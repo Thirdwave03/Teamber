@@ -3,7 +3,6 @@
 #include "SceneDev1.h"
 #include "SceneDev2.h"
 
-
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneDev1());	

@@ -137,7 +137,7 @@ Sides Tree::Chop(Sides side)
 		SCENE_MGR.GetCurrentScene()->AddGo(effect);
 		effect->SetOrigin(Origins::BC);
 		effect->SetPosition(position);
-		effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
+		effect->Fire({ side == Sides::Right ? Utils::RandomRange(-1400.f, - 200.f) : Utils::RandomRange(200.f,1400.f), -1000.f});
 		logEffects.push_back(effect);
 	}
 

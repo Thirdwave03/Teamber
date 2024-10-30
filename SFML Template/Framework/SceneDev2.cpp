@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "SceneDev2.h"
 #include "SpriteGo.h"
+#include "CloudGo.h"
+#include "Tree.h"
+#include "Player.h"
+#include "TextGo.h"
+#include "UiScore.h"
+#include "UiTimebar.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 {
@@ -11,14 +17,45 @@ void SceneDev2::Init()
 {
 	std::cout << "SceneDev2::Init()" << std::endl;
 
-	AddGo(new SpriteGo("graphics/player.png"));
+	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
+	obj->sortingLayer = SortingLayers::Background;
+	obj->sortingOrder = -1;
+	obj->SetOrigin(Origins::MC);
+	obj->SetPosition({ 1920 / 2, 1080 / 2 });
+
+	for (int i = 0; i < 3; ++i)
+	{
+		CloudGo* cloud = AddGo(new CloudGo("graphics/cloud.png"));
+		cloud->sortingLayer = SortingLayers::Background;
+		cloud->sortingOrder = 0;
+	}
+
+	TEXTURE_MGR.Load("graphics/tree.png");
+	TEXTURE_MGR.Load("graphics/branch.png");
+	TEXTURE_MGR.Load("graphics/player.png");
+	TEXTURE_MGR.Load("graphics/rip.png");
+	TEXTURE_MGR.Load("graphics/axe.png");
+
+	GameObject* tree1 = AddGo(new Tree("Tree"));
+	tree1->sortingLayer = SortingLayers::Background;
+	tree1->sortingOrder = -1;
+	tree1->SetOrigin(Origins::MC);
+	tree1->SetPosition({ 1920 / 4, 850 });
+
+	GameObject* tree2 = AddGo(new Tree("Tree"));
+	tree2->sortingLayer = SortingLayers::Background;
+	tree2->sortingOrder = -1;
+	tree2->SetOrigin(Origins::MC);
+	tree2->SetPosition({ (1920 / 4) * 3, 850 });
 
 	Scene::Init();
 }
 
 void SceneDev2::Enter()
 {
-	std::cout << "SceneDev2::Enter()" << std::endl;
+
+	TEXTURE_MGR.Load("graphics/tree.png");
+
 
 	TEXTURE_MGR.Load("graphics/player.png");
 

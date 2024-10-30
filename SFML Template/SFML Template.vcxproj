@@ -163,6 +163,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
+    <ClCompile Include="Framework\SceneDev3.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
+    <ClInclude Include="Framework\SceneDev3.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />

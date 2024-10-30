@@ -20,16 +20,21 @@ public:
 protected:
 	Status currentStatus = Status::Awake;
 
-	Tree* tree;
+	Tree* tree1;
+	Tree* tree2;
 	Player* player1;
 	Player* player2;
 
 	TextGo* centerMsg;
-	UiScore* uiScore;
-	UiTimebar* uiTimer;
+	UiScore* uiScore1;
+	UiScore* uiScore2;
+	UiTimebar* uiTimer1;
+	UiTimebar* uiTimer2;
 
-	int score = 0;
-	float timer = 0.f;
+	int score1 = 0;
+	int score2 = 0;
+	float timer1 = 0.f;
+	float timer2 = 0.f;
 	float gameTime = 5.f;
 
 	sf::Sound sfxDeath;

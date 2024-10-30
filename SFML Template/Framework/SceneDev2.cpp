@@ -38,10 +38,10 @@ void SceneDev2::Init()
 	TEXTURE_MGR.Load("graphics/axe.png");
 
 	tree1 = AddGo(new Tree("Tree"));
-	tree2 = AddGo(new Tree("Tree"));
+	tree2 = AddGo(new Tree("Tree2"));
 
-	player1 = AddGo(new Player("Player"));
-	player2 = AddGo(new Player("graphics/player2.png"));
+	player1 = AddGo(new Player("graphics/player.png", "Player"));
+	player2 = AddGo(new Player("graphics/player2.png", "Player2"));
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
@@ -70,7 +70,7 @@ void SceneDev2::Init()
 
 	uiScore2->text.setCharacterSize(75);
 	uiScore2->text.setFillColor(sf::Color::White);
-	uiScore2->SetPosition({1920 / 2 + 30.f, 30.f });
+	uiScore2->SetPosition({ 1920 / 2 + 30.f, 30.f });
 
 	uiTimer1->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer1->SetOrigin(Origins::ML);
@@ -103,6 +103,9 @@ void SceneDev2::Enter()
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
 
+	player1->SetSceneGame2(this);
+
+	player2->SetSceneGame2(this);
 	Scene::Enter();
 
 	SetStatus(Status::Awake);
@@ -172,13 +175,18 @@ void SceneDev2::SetVisibleCenterMessage(bool visible)
 	centerMsg->SetActive(visible);
 }
 
-void SceneDev2::SetScore(int score)
+void SceneDev2::SetScore(int playernumber, int score)
 {
-	this->score1 = score;
-	uiScore1->SetScore(this->score1);
-
-	this->score2 = score;
-	uiScore2->SetScore(this->score2);
+	if (playernumber == 1)
+	{
+		this->score1 = score;
+		uiScore1->SetScore(this->score1);
+	}
+	if (playernumber == 2)
+	{
+		this->score2 = score;
+		uiScore2->SetScore(this->score2);
+	}
 }
 
 void SceneDev2::SetStatus(Status newStatus)
@@ -194,12 +202,12 @@ void SceneDev2::SetStatus(Status newStatus)
 		SetCenterMessage("Press Enter To Start!!");
 		score1 = 0;
 		timer1 = gameTime;
-		SetScore(score1);
+		SetScore(1, score1);
 		uiTimer1->SetValue(1.f);
 
 		score2 = 0;
 		timer2 = gameTime;
-		SetScore(score2);
+		SetScore(2, score2);
 		uiTimer2->SetValue(1.f);
 		break;
 	case SceneDev2::Status::Game:
@@ -208,7 +216,7 @@ void SceneDev2::SetStatus(Status newStatus)
 			score1 = 0;
 			timer1 = gameTime;
 
-			SetScore(score1);
+			SetScore(1, score1);
 			uiTimer1->SetValue(1.f);
 
 			player1->Reset();
@@ -217,7 +225,7 @@ void SceneDev2::SetStatus(Status newStatus)
 			score2 = 0;
 			timer2 = gameTime;
 
-			SetScore(score1);
+			SetScore(2, score1);
 			uiTimer2->SetValue(1.f);
 
 			player2->Reset();
@@ -261,7 +269,7 @@ void SceneDev2::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player1->OnDie();
-		SetCenterMessage("Time Over!");
+		SetCenterMessage("Player1 Time Over!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -273,7 +281,7 @@ void SceneDev2::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player2->OnDie();
-		SetCenterMessage("Time Over!");
+		SetCenterMessage("Player2 Time Over!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -295,35 +303,41 @@ void SceneDev2::UpdatePause(float dt)
 	}
 }
 
-void SceneDev2::OnChop(Sides side)
+void SceneDev2::OnChop(int playernumber, Sides side)
 {
-	Sides branchSide = tree1->Chop(side);
-	if (player1->GetSide() == branchSide)
+	if (playernumber == 1)
 	{
-		sfxDeath.play();
+		Sides branchSide1 = tree1->Chop(side);
+		if (player1->GetSide() == branchSide1)
+		{
+			sfxDeath.play();
 
-		player1->OnDie();
-		SetCenterMessage("You Die!");
-		SetStatus(Status::GameOver);
-	}
-	else
-	{
-		SetScore(score1 + 100);
-		timer1 += 1.f;
+			player1->OnDie();
+			SetCenterMessage("Player1 You Die!");
+			SetStatus(Status::GameOver);
+		}
+		else
+		{
+			SetScore(1, score1 + 100);
+			timer1 += 1.f;
+		}
 	}
 
-	Sides branchSide2 = tree2->Chop(side);
-	if (player2->GetSide() == branchSide2)
+	if (playernumber == 2)
 	{
-		sfxDeath.play();
+		Sides branchSide2 = tree2->Chop(side);
+		if (player2->GetSide() == branchSide2)
+		{
+			sfxDeath.play();
 
-		player2->OnDie();
-		SetCenterMessage("You Die!");
-		SetStatus(Status::GameOver);
-	}
-	else
-	{
-		SetScore(score2 + 100);
-		timer2 += 1.f;
+			player2->OnDie();
+			SetCenterMessage("Player2 You Die!");
+			SetStatus(Status::GameOver);
+		}
+		else
+		{
+			SetScore(2, score2 + 100);
+			timer2 += 1.f;
+		}
 	}
 }

@@ -36,7 +36,7 @@ void SceneDev1::Init()
 	TEXTURE_MGR.Load("graphics/axe.png");
 
 	tree = AddGo(new Tree("Tree"));
-	player = AddGo(new Player("Player"));
+	player = AddGo(new Player("graphics/player.png", "Player"));
 
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
@@ -94,6 +94,8 @@ void SceneDev1::Exit()
 
 	player->SetSceneGame(nullptr);
 	tree->ClearEffectLog();
+
+	
 
 	Scene::Exit();
 

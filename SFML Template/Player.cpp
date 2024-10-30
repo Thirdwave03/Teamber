@@ -1,8 +1,15 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "SceneDev1.h"	
+#include "SceneDev2.h"	
 
 Player::Player(const std::string& name) : GameObject(name)
+{
+	sortingLayer = SortingLayers::Foreground;
+	sortingOrder = 0;
+}
+
+Player::Player(const std::string& id, const std::string& name) : texIdPlayer(id), GameObject(name)
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
@@ -108,32 +115,98 @@ void Player::Update(float dt)
 {
 	if (!isAlive)
 		return;
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	if (GameObject::name == "Player")
 	{
-		isChppoing = true;
-		SetSide(Sides::Left);
-		sceneGame->OnChop(Sides::Left);
-		sfxChop.play();
+		if (InputMgr::GetKeyDown(sf::Keyboard::A))
+		{
+			isChppoing = true;
+			SetSide(Sides::Left);
+			if (sceneGame != nullptr)
+			{
+				sceneGame->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(1, Sides::Left);
+				sfxChop.play();
+			}
+		}
+
+		if (InputMgr::GetKeyUp(sf::Keyboard::A))
+		{
+			isChppoing = false;
+		}
+
+		if (InputMgr::GetKeyDown(sf::Keyboard::D))
+		{
+			isChppoing = true;
+			SetSide(Sides::Right);
+			if (sceneGame != nullptr)
+			{
+				sceneGame->OnChop(Sides::Right);
+				sfxChop.play();
+			}
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(1, Sides::Right);
+				sfxChop.play();
+			}
+
+		}
+
+		if (InputMgr::GetKeyUp(sf::Keyboard::D))
+		{
+			isChppoing = false;
+		}
+	}
+	else if (GameObject::name == "Player2")
+	{
+		if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+		{
+			isChppoing = true;
+			SetSide(Sides::Left);
+			if (sceneGame != nullptr)
+			{
+				sceneGame->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(2, Sides::Left);
+				sfxChop.play();
+			}
+		}
+
+		if (InputMgr::GetKeyUp(sf::Keyboard::Left))
+		{
+			isChppoing = false;
+		}
+
+		if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+		{
+			isChppoing = true;
+			SetSide(Sides::Right);
+			if (sceneGame != nullptr)
+			{
+				sceneGame->OnChop(Sides::Right);
+				sfxChop.play();
+			}
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(2, Sides::Right);
+				sfxChop.play();
+			}
+
+		}
+
+		if (InputMgr::GetKeyUp(sf::Keyboard::Right))
+		{
+			isChppoing = false;
+		}
 	}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
-	{
-		isChppoing = false;
-	}
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
-	{
-		isChppoing = true;
-		SetSide(Sides::Right);
-		sceneGame->OnChop(Sides::Right);
-		sfxChop.play();
-	}
-
-	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
-	{
-		isChppoing = false;
-	}
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -155,4 +228,9 @@ void Player::Draw(sf::RenderWindow& window)
 void Player::SetSceneGame(SceneDev1* scene)
 {
 	sceneGame = scene;
+}
+
+void Player::SetSceneGame2(SceneDev2* scene)
+{
+	sceneGame2 = scene;
 }

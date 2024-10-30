@@ -63,6 +63,11 @@ void Tree::Release()
 	branches.clear();
 }
 
+int Tree::GetTreeHp()
+{
+	return treeHp;
+}
+
 
 void Tree::Reset()
 {
@@ -139,6 +144,7 @@ Sides Tree::Chop(Sides side)
 		effect->SetPosition(position);
 		effect->Fire({ side == Sides::Right ? Utils::RandomRange(-1400.f, - 200.f) : Utils::RandomRange(200.f,1400.f), -1000.f});
 		logEffects.push_back(effect);
+		treeHp--;
 	}
 
 	Branch* temp = branches.front();

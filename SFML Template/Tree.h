@@ -14,6 +14,8 @@ protected:
 	std::string treeTexId = "graphics/tree.png";
 	std::string branchTexId = "graphics/branch.png";
 
+	int treeHp = 100;
+
 	float brachOffsetY = 150.f;
 
 	ObjectPool<EffectLog> effectLogPool;
@@ -30,6 +32,7 @@ public:
 
 	void Init() override;
 	void Release() override;
+	int GetTreeHp();
 
 	void Reset() override;
 

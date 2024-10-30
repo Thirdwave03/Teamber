@@ -32,6 +32,11 @@ protected:
 	float timer = 0.f;
 	float gameTime = 5.f;
 
+	TextGo* timeLimMsg;
+	float timeLim = 30.f;
+
+	int stage = 1;
+
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
 
@@ -52,6 +57,8 @@ public:
 
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
+
+	void SetTimeLimMsg(const std::string& msg);
 
 	void SetScore(int score);
 

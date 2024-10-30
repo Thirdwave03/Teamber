@@ -16,51 +16,66 @@ void SceneDev1::Init()
 {
 	std::cout << "SceneDev1::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
-	obj->sortingLayer = SortingLayers::Background;
-	obj->sortingOrder = -1;
-	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ 1920 / 2, 1080 / 2 });
-
-	for (int i = 0; i < 3; ++i)
+	switch (stage)
 	{
-		CloudGo* cloud = AddGo(new CloudGo("graphics/cloud.png"));
-		cloud->sortingLayer = SortingLayers::Background;
-		cloud->sortingOrder = 0;
+	case 1:
+		GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
+		obj->sortingLayer = SortingLayers::Background;
+		obj->sortingOrder = -1;
+		obj->SetOrigin(Origins::MC);
+		obj->SetPosition({ 1920 / 2, 1080 / 2 });
+
+		for (int i = 0; i < 3; ++i)
+		{
+			CloudGo* cloud = AddGo(new CloudGo("graphics/cloud.png"));
+			cloud->sortingLayer = SortingLayers::Background;
+			cloud->sortingOrder = 0;
+		}
+
+		TEXTURE_MGR.Load("graphics/tree.png");
+		TEXTURE_MGR.Load("graphics/branch.png");
+		TEXTURE_MGR.Load("graphics/player.png");
+		TEXTURE_MGR.Load("graphics/rip.png");
+		TEXTURE_MGR.Load("graphics/axe.png");
+
+		tree = AddGo(new Tree("Tree"));
+		player = AddGo(new Player("Player"));
+
+		timeLimMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Time Limit"));
+		timeLimMsg->sortingLayer = SortingLayers::UI;
+		timeLimMsg->text.setCharacterSize(120);
+		timeLimMsg->text.setFillColor(sf::Color::White);
+		timeLimMsg->SetPosition({ 1920.f / 2.f, 0 });
+		timeLimMsg->SetOrigin({ 50.f,0.f });
+		SetTimeLimMsg(std::to_string((int)timeLim));
+
+
+		centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
+		centerMsg->sortingLayer = SortingLayers::UI;
+
+
+		uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
+		uiTimer = AddGo(new UiTimebar("Ui Timer"));
+
+		Scene::Init();
+
+		tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
+		player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
+
+		centerMsg->text.setCharacterSize(100);
+		centerMsg->text.setFillColor(sf::Color::White);
+		centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
+
+		uiScore->text.setCharacterSize(75);
+		uiScore->text.setFillColor(sf::Color::White);
+		uiScore->SetPosition({ 30.f, 30.f });
+
+		uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
+		uiTimer->SetOrigin(Origins::ML);
+		uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+		break;
+
 	}
-
-	TEXTURE_MGR.Load("graphics/tree.png");
-	TEXTURE_MGR.Load("graphics/branch.png");
-	TEXTURE_MGR.Load("graphics/player.png");
-	TEXTURE_MGR.Load("graphics/rip.png");
-	TEXTURE_MGR.Load("graphics/axe.png");
-
-	tree = AddGo(new Tree("Tree"));
-	player = AddGo(new Player("Player"));
-
-
-	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
-	centerMsg->sortingLayer = SortingLayers::UI;
-
-	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
-	uiTimer = AddGo(new UiTimebar("Ui Timer"));
-
-	Scene::Init();
-
-	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
-	player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
-
-	centerMsg->text.setCharacterSize(100);
-	centerMsg->text.setFillColor(sf::Color::White);
-	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
-
-	uiScore->text.setCharacterSize(75);
-	uiScore->text.setFillColor(sf::Color::White);
-	uiScore->SetPosition({ 30.f, 30.f });
-	
-	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
-	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
 }
 
 void SceneDev1::Enter()
@@ -115,7 +130,8 @@ void SceneDev1::Exit()
 void SceneDev1::Update(float dt)
 { 
 	Scene::Update(dt);
-
+	
+	SetTimeLimMsg(std::to_string((int)timeLim));
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{
@@ -159,6 +175,12 @@ void SceneDev1::SetVisibleCenterMessage(bool visible)
 	centerMsg->SetActive(visible);
 }
 
+void SceneDev1::SetTimeLimMsg(const std::string& msg)
+{
+	timeLimMsg->text.setString(msg);
+	timeLimMsg->SetOrigin(Origins::MC);
+}
+
 void SceneDev1::SetScore(int score)
 {
 	this->score = score;
@@ -186,6 +208,8 @@ void SceneDev1::SetStatus(Status newStatus)
 		{
 			score = 0;
 			timer = gameTime;
+			timeLim = 30.f;
+			stage = 1;
 
 			SetScore(score);
 			uiTimer->SetValue(1.f);
@@ -224,9 +248,12 @@ void SceneDev1::UpdateGame(float dt)
 		return;
 	}
 
+	if (timeLim > 0.f)
+		timeLim -= dt;
+
 	timer = Utils::Clamp(timer - dt, 0.f, gameTime);
 	uiTimer->SetValue(timer / gameTime);
-	if (timer <= 0.f)
+	if (timer <= 0.f || timeLim <= 0.f)
 	{
 		sfxTimeOut.play();
 

@@ -117,9 +117,13 @@ void SceneDev1::Update(float dt)
 	Scene::Update(dt);
 
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev2);
+	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num3))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Dev3);
 	}
 
 	switch (currentStatus)

@@ -106,7 +106,7 @@ void Player::Release()
 
 void Player::Update(float dt)
 {
-	if (!isAlive)
+	if (!isAlive || FRAMEWORK.GetTimeScale() <= 0.f)
 		return;
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
@@ -127,7 +127,7 @@ void Player::Update(float dt)
 		isChppoing = true;
 		SetSide(Sides::Right);
 		sceneGame->OnChop(Sides::Right);
-		sceneGame->OnChop(Sides::Left);
+		sfxChop.play();
 	}
 
 	if (InputMgr::GetKeyUp(sf::Keyboard::Right))

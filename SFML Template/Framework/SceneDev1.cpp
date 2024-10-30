@@ -218,7 +218,7 @@ void SceneDev1::UpdateAwake(float dt)
 
 void SceneDev1::UpdateGame(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
 		SetStatus(Status::Pause);
 		return;
@@ -247,7 +247,7 @@ void SceneDev1::UpdateGameOver(float dt)
 
 void SceneDev1::UpdatePause(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
 		SetStatus(Status::Game);
 	}

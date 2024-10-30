@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 class SceneDev1;
+class SceneDev2;
 
 class Player : public GameObject
 {
@@ -30,9 +31,11 @@ protected:
 	bool isChppoing = false;
 
 	SceneDev1* sceneGame = nullptr;
+	SceneDev2* sceneGame2 = nullptr;
 
 public:
 	Player(const std::string& name = "");
+	Player(const std::string& id, const std::string& name = "");
 	virtual ~Player() = default;
 
 	Sides GetSide() const { return side; }
@@ -52,5 +55,6 @@ public:
 	void Draw(sf::RenderWindow& window)  override;
 
 	void SetSceneGame(SceneDev1* scene);
+	void SetSceneGame2(SceneDev2* scene);
 };
 

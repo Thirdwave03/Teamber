@@ -57,7 +57,7 @@ public:
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
 
-	void SetScore(int score);
+	void SetScore(int playernumber, int score);
 
 	void SetStatus(Status newStatus);
 	void UpdateAwake(float dt);
@@ -65,6 +65,6 @@ public:
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
 
-	void OnChop(Sides side);
+	void OnChop(int playernumber, Sides side);
 };
 

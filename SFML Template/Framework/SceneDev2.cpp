@@ -8,7 +8,8 @@
 #include "UiScore.h"
 #include "UiTimebar.h"
 
-SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
+SceneDev2::SceneDev2() 
+	: Scene(SceneIds::Dev2)
 {
 
 }

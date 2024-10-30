@@ -2,13 +2,13 @@
 class Scene
 {
 protected:
-	const SceneIds id;
 	std::list<GameObject*> gameObjects;
 
 	std::list<GameObject*> addGameObjects;
 	std::list<GameObject*> removeGameObjects;
 
 public:
+	const SceneIds id;
 	Scene(SceneIds id);
 	virtual ~Scene() = default;
 

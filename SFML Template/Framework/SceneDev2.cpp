@@ -43,7 +43,6 @@ void SceneDev2::Init()
 	player1 = AddGo(new Player("Player"));
 	player2 = AddGo(new Player("graphics/player2.png"));
 
-
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
 

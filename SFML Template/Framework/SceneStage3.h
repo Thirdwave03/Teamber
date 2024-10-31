@@ -6,6 +6,7 @@ class Player;
 class TextGo;
 class UiScore;
 class UiTimebar;
+class SkillCD;
 
 class SceneStage3 : public Scene
 {

@@ -1,194 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="characterchoice1.cpp" />
+    <ClCompile Include="characterchoice2.cpp" />
+    <ClCompile Include="CloudGo.cpp" />
+    <ClCompile Include="EffectLog.cpp" />
+    <ClCompile Include="Framework\Framework.cpp" />
+    <ClCompile Include="Framework\GameObject.cpp" />
+    <ClCompile Include="Framework\InputMgr.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Framework\Scene.cpp" />
+    <ClCompile Include="Framework\SceneDev1.cpp" />
+    <ClCompile Include="Framework\SceneDev2.cpp" />
+    <ClCompile Include="Framework\SceneMgr.cpp" />
+    <ClCompile Include="Framework\main.cpp" />
+    <ClCompile Include="Framework\SpriteGo.cpp" />
+    <ClCompile Include="Framework\stdafx.cpp" />
+    <ClCompile Include="Framework\TextGo.cpp" />
+    <ClCompile Include="Framework\SceneDev3.cpp" />
+    <ClCompile Include="Framework\SceneStage2.cpp" />
+    <ClCompile Include="Framework\SceneStage3.cpp" />
+    <ClCompile Include="Framework\SceneStage4.cpp" />
+    <ClCompile Include="Framework\SkillCD.cpp" />
+    <ClCompile Include="Framework\SceneTitle.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="UiScore.cpp" />
+    <ClCompile Include="UiTimebar.cpp" />
+    <ClCompile Include="Framework\Utils.cpp" />
+    <ClCompile Include="EffectSkill1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\InputMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Framework.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\GameObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SpriteGo.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Scene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneDev1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneDev2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Utils.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudGo.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\TextGo.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Branch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectLog.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UiScore.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UiTimebar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneDev3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Framework\SceneStage2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneStage3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SceneStage4.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\SkillCD.cpp">
-=======
-    <ClCompile Include="Framework\SceneTitle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="characterchoice1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="characterchoice2.cpp">
->>>>>>> origin/SceneTitle
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Framework\InputMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ResourceMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Singleton.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\GameObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SpriteGo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Scene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Defines.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneDev1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneDev2.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utils.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudGo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\TextGo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Branch.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectLog.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ObjectPool.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="UiScore.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="UiTimebar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneDev3.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Framework\SceneStage2.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneStage3.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneStage4.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SkillCD.h">
-=======
-    <ClInclude Include="Framework\SceneTitle.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="characterchoice1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="characterchoice2.h">
->>>>>>> origin/SceneTitle
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
+    <ClInclude Include="Branch.h" />
+    <ClInclude Include="characterchoice1.h" />
+    <ClInclude Include="characterchoice2.h" />
+    <ClInclude Include="CloudGo.h" />
+    <ClInclude Include="Framework\Defines.h" />
+    <ClInclude Include="EffectLog.h" />
+    <ClInclude Include="Framework\Framework.h" />
+    <ClInclude Include="Framework\GameObject.h" />
+    <ClInclude Include="Framework\InputMgr.h" />
+    <ClInclude Include="Framework\ObjectPool.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Framework\ResourceMgr.h" />
+    <ClInclude Include="Framework\Scene.h" />
+    <ClInclude Include="Framework\SceneDev1.h" />
+    <ClInclude Include="Framework\SceneDev2.h" />
+    <ClInclude Include="Framework\SceneMgr.h" />
+    <ClInclude Include="Framework\Singleton.h" />
+    <ClInclude Include="Framework\SpriteGo.h" />
+    <ClInclude Include="Framework\stdafx.h" />
+    <ClInclude Include="Framework\TextGo.h" />
+    <ClInclude Include="Framework\SceneDev3.h" />
+    <ClInclude Include="Framework\SceneStage2.h" />
+    <ClInclude Include="Framework\SceneStage3.h" />
+    <ClInclude Include="Framework\SceneStage4.h" />
+    <ClInclude Include="Framework\SkillCD.h" />
+    <ClInclude Include="Framework\SceneTitle.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="UiScore.h" />
+    <ClInclude Include="UiTimebar.h" />
+    <ClInclude Include="Framework\Utils.h" />
+    <ClInclude Include="EffectSkill1.h" />
   </ItemGroup>
 </Project>

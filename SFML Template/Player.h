@@ -39,8 +39,6 @@ protected:
 	SceneStage3* sceneStage3 = nullptr;
 	SceneStage4* sceneStage4 = nullptr;
 
-	bool skillUnlock[3] = { false };
-
 public:
 	Player(const std::string& name = "");
 	Player(const std::string& id, const std::string& name = "");

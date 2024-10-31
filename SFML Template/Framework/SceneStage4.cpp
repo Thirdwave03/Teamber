@@ -72,7 +72,7 @@ void SceneStage4::Exit()
 {
 	std::cout << "SceneStage4::Exit()" << std::endl;
 
-	player->SetSceneGame(nullptr);
+	player->SetSceneGameStage4(nullptr);
 	tree->ClearEffectLog();
 
 	Scene::Exit();

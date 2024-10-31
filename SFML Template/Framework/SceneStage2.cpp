@@ -30,6 +30,8 @@ void SceneStage2::Init()
 	timeLimMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Time Limit"));
 	timeLimMsg->sortingLayer = SortingLayers::UI;
 	timeLimMsg->text.setCharacterSize(120);
+	timeLimMsg->text.setOutlineThickness(5);
+	timeLimMsg->text.setOutlineColor(sf::Color::Black);
 	timeLimMsg->text.setFillColor(sf::Color::White);
 	timeLimMsg->SetPosition({ 1920.f / 2.f, 0 });
 	timeLimMsg->SetOrigin({ 50.f,0.f });
@@ -50,10 +52,14 @@ void SceneStage2::Init()
 	player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
 
 	centerMsg->text.setCharacterSize(100);
+	centerMsg->text.setOutlineThickness(5);
+	centerMsg->text.setOutlineColor(sf::Color::Black);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
 
 	uiScore->text.setCharacterSize(75);
+	uiScore->text.setOutlineThickness(5);
+	uiScore->text.setOutlineColor(sf::Color::Black);
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
 

@@ -62,14 +62,20 @@ void SceneDev2::Init()
 	player2->SetPosition({ (1920 / 4) + 960 , 850 });
 
 	centerMsg->text.setCharacterSize(100);
+	centerMsg->text.setOutlineThickness(3);
+	centerMsg->text.setOutlineColor(sf::Color::Black);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
 
 	uiScore1->text.setCharacterSize(75);
+	uiScore1->text.setOutlineThickness(3);
+	uiScore1->text.setOutlineColor(sf::Color::Black);
 	uiScore1->text.setFillColor(sf::Color::White);
 	uiScore1->SetPosition({ 30.f, 30.f });
 
 	uiScore2->text.setCharacterSize(75);
+	uiScore2->text.setOutlineThickness(3);
+	uiScore2->text.setOutlineColor(sf::Color::Black);
 	uiScore2->text.setFillColor(sf::Color::White);
 	uiScore2->SetPosition({ 1920 / 2 + 30.f, 30.f });
 

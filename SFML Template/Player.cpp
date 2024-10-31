@@ -6,13 +6,15 @@
 #include "SceneStage3.h"
 #include "SceneStage4.h"
 
-Player::Player(const std::string& name) : GameObject(name)
+Player::Player(const std::string& name)
+	: GameObject(name)
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
 }
 
-Player::Player(const std::string& id, const std::string& name) : texIdPlayer(id), GameObject(name)
+Player::Player(const std::string& id, const std::string& name)
+	: texIdPlayer(id), GameObject(name)
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;

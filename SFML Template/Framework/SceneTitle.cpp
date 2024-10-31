@@ -9,15 +9,13 @@
 #include "UiTimebar.h"
 
 SceneTitle::SceneTitle()
-	:Scene(SceneIds::Dev3)
+	:Scene(SceneIds::Title)
 {
 
 }
 
 void SceneTitle::Init()
 {
-	std::cout << "SceneDev2::Init()" << std::endl;
-
 	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
@@ -46,7 +44,6 @@ void SceneTitle::Init()
 
 	tree->SetPosition({ 1920 / 2, 880 });
 	player->SetPosition({ 1920 / 2, 880 });
-
 	MainMsg->text.setCharacterSize(100);
 	MainMsg->text.setFillColor(sf::Color::Red);
 	MainMsg->SetPosition({ 1920.f / 2.f, 100.f });

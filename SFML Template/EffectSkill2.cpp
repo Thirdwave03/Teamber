@@ -1,20 +1,19 @@
 #include "stdafx.h"
-#include "EffectSkill1.h"
+#include "EffectSkill2.h"
 
-EffectSkill1::EffectSkill1() 
-	: SpriteGo("graphics/Hadouken.png")
+EffectSkill2::EffectSkill2()
+	: SpriteGo("graphics/Shoryuken.png")
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 1;
 }
 
-EffectSkill1::EffectSkill1(const std::string& texId, const std::string& name)
+EffectSkill2::EffectSkill2(const std::string& texId, const std::string& name)
 	: SpriteGo(texId, name)
 {
-
 }
 
-void EffectSkill1::Update(float dt)
+void EffectSkill2::Update(float dt)
 {
 	timer += dt;
 	if (timer > duration)
@@ -26,7 +25,7 @@ void EffectSkill1::Update(float dt)
 	SetPosition(position + velocity * dt);
 }
 
-void EffectSkill1::Fire(sf::Vector2f v)
+void EffectSkill2::Fire(sf::Vector2f v)
 {
 	velocity = v;
 	timer = 0.f;

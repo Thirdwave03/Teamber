@@ -129,6 +129,11 @@ void SceneStage3::Update(float dt)
 
 	SetTimeLimMsg(std::to_string((int)timeLim));
 
+	if (InputMgr::GetKeyDown(sf::Keyboard::R))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Title);
+	}
+
 	switch (currentStatus)
 	{
 	case SceneStage3::Status::Awake:
@@ -293,6 +298,12 @@ void SceneStage3::OnChop(Sides side)
 
 void SceneStage3::OnQ()
 {
-	skillMgr->Hadouken(player->GetSide());
-	sfxHadouken.play();
+	if (skillMgr->Hadouken(player->GetSide()))
+		sfxHadouken.play();
+}
+
+void SceneStage3::OnW()
+{
+	if (skillMgr->Shoryuken(player->GetSide()))
+		sfxShoryuken.play();
 }

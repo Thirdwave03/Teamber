@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "EffectSkill1.h"
+#include "EffectSkill2.h"
+
 
 class SkillCD : public GameObject
 {
@@ -28,6 +30,9 @@ protected:
 
 	ObjectPool<EffectSkill1> effectSkill1Pool;
 	std::list<EffectSkill1*> Skill1Effects;
+
+	ObjectPool<EffectSkill2> effectSkill2Pool;
+	std::list<EffectSkill2*> Skill2Effects;
 	
 	float skillCD[3] = { 0.5f, 3.f, 5.f };
 
@@ -49,8 +54,8 @@ public:
 
 	void SkillUnlock(int index);
 
-	void Hadouken(Sides side);
-	void Shoryuken(Sides side);
-	void Tatsumaki();
+	bool Hadouken(Sides side);
+	bool Shoryuken(Sides side);
+	bool Tatsumaki();
 };
 

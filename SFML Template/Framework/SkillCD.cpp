@@ -33,7 +33,7 @@ void SkillCD::Init()
 	Release();
 
 	shaderBlack = sf::Color(0, 0, 0, 255);
-	shaderCD = sf::Color(0, 0, 0, 100);
+	shaderCD = sf::Color(0, 0, 0, 160);
 
 	skillIcon1.setTexture(TEXTURE_MGR.Get(skill1TexId), true);
 	skillIcon1.setPosition(iconPos);
@@ -68,7 +68,7 @@ void SkillCD::Release()
 void SkillCD::Reset()
 {
 	shaderBlack = sf::Color(0, 0, 0, 255);
-	shaderCD = sf::Color(0, 0, 0, 100);
+	shaderCD = sf::Color(0, 0, 0, 160);
 
 	skillIcon1.setTexture(TEXTURE_MGR.Get(skill1TexId), true);
 	skillIcon1.setPosition(iconPos);
@@ -150,37 +150,71 @@ void SkillCD::SkillUnlock(int index)
 	skillUnlock[index] = true;
 }
 
-void SkillCD::Hadouken(Sides side)
+bool SkillCD::Hadouken(Sides side)
 {
 	if (side != Sides::None && skillCD[0] <= 0)
 	{
 		sf::Vector2f tempPos;
 		sf::Vector2f tempSpeed;
+		EffectSkill1* s1effect = effectSkill1Pool.Take();
 		if (side == Sides::Left)
 		{
 			tempPos = { 660.f, 810.f };
 			tempSpeed = { 500.f,0 };
+			s1effect->SetScale({ 1.f,1.f });
 		}
 		else
 		{
 			tempPos = { 1260.f,810.f };
 			tempSpeed = { -500.f,0 };
+			s1effect->SetScale({ -1.f,1.f });
 		}
-		
-		EffectSkill1* s1effect = effectSkill1Pool.Take();
+
 		SCENE_MGR.GetCurrentScene()->AddGo(s1effect);
 		s1effect->SetOrigin(Origins::MC);
 		s1effect->SetPosition(tempPos);
 		s1effect->Fire(tempSpeed);
 		Skill1Effects.push_back(s1effect);
 		skillCD[0] = 0.5f;
+		return true;
 	}
+	else
+		return false;
 }
 
-void SkillCD::Shoryuken(Sides side)
+bool SkillCD::Shoryuken(Sides side)
 {
+	if (side != Sides::None && skillCD[1] <= 0)
+	{
+		sf::Vector2f tempPos;
+		sf::Vector2f tempSpeed;
+		EffectSkill2* s2effect = effectSkill2Pool.Take();
+		if (side == Sides::Left)
+		{
+			tempPos = { 660.f, 750.f };
+			tempSpeed = { 0.f, -900.f };
+			s2effect->SetScale({ 3.f,3.f });
+		}
+		else
+		{
+			tempPos = { 1260.f,750.f };
+			tempSpeed = { 0.f, -900.f };
+			s2effect->SetScale({ -3.f,3.f });
+		}
+
+		SCENE_MGR.GetCurrentScene()->AddGo(s2effect);
+		s2effect->SetOrigin(Origins::MC);
+		s2effect->SetPosition(tempPos);
+		s2effect->Fire(tempSpeed);
+		Skill2Effects.push_back(s2effect);
+		skillCD[1] = 2.5f;
+		return true;
+	}
+	else
+		return false;
 }
 
-void SkillCD::Tatsumaki()
+bool SkillCD::Tatsumaki()
 {
+	return true;
 }

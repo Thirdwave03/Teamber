@@ -71,7 +71,7 @@ void CharacterChoice1::Update(float dt)
 	SceneMgr::Instance().setSide(choice->GetSide());
 	if (choice->GetSide() == Sides::Left)
 	{
-		if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+		if (InputMgr::GetKeyDown(sf::Keyboard::D))
 		{
 			choice->SetSide(Sides::Right);
 		}
@@ -86,7 +86,7 @@ void CharacterChoice1::Update(float dt)
 
 	if (choice->GetSide() == Sides::Right)
 	{
-		if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+		if (InputMgr::GetKeyDown(sf::Keyboard::A))
 		{	
 			choice->SetSide(Sides::Left);
 		}

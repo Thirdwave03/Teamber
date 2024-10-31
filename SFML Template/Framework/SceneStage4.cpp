@@ -16,7 +16,7 @@ SceneStage4::SceneStage4() : Scene(SceneIds::Stage2)
 
 void SceneStage4::Init()
 {
-	std::cout << "SceneStage4::Init()" << std::endl;
+	/*std::cout << "SceneStage4::Init()" << std::endl;
 
 	Scene::Init();
 
@@ -33,7 +33,7 @@ void SceneStage4::Init()
 
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });*/
 }
 
 void SceneStage4::Enter()

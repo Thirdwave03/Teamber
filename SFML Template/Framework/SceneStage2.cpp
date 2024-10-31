@@ -19,7 +19,7 @@ void SceneStage2::Init()
 
 	Scene::Init();
 
-	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
+	/*tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
 	player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
 
 	centerMsg->text.setCharacterSize(100);
@@ -32,7 +32,7 @@ void SceneStage2::Init()
 
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });*/
 }
 
 void SceneStage2::Enter()

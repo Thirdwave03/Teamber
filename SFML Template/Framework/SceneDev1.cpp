@@ -222,7 +222,7 @@ void SceneDev1::SetStatus(Status newStatus)
 		}
 		if (tree->GetTreeHp() <= 0)
 		{
-			SCENE_MGR.ChangeScene(SceneIds::Stage2);
+			/*SCENE_MGR.ChangeScene(SceneIds::Stage2);*/
 			tree->SetTreeHp(80);
 		}
 		FRAMEWORK.SetTimeScale(1.f);

@@ -7,6 +7,8 @@
 #include "TextGo.h"
 #include "UiScore.h"
 #include "UiTimebar.h"
+#include "Choice.h"
+#include "CharacterChoice1.h"
 
 SceneDev1::SceneDev1() : Scene(SceneIds::Dev1)
 {
@@ -128,7 +130,14 @@ void SceneDev1::Exit()
 void SceneDev1::Update(float dt)
 {
 	Scene::Update(dt);
-
+	if (SceneMgr::Instance().GetSide() == Sides::Right)
+	{
+		player->SetTexture("graphics/player2.png");
+	}
+	if (SceneMgr::Instance().GetSide() == Sides::Left)
+	{
+		player->SetTexture("graphics/player.png");
+	}
 	SetTimeLimMsg(std::to_string((int)timeLim));
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))

@@ -54,7 +54,7 @@ void CharacterChoice1::Exit()
 void CharacterChoice1::Update(float dt)
 {
 	Scene::Update(dt);
-
+	SceneMgr::Instance().setSide(choice->GetSide());
 	if (choice->GetSide() == Sides::Left)
 	{
 		if (InputMgr::GetKeyDown(sf::Keyboard::Right))
@@ -63,7 +63,6 @@ void CharacterChoice1::Update(float dt)
 		}
 		if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 		{
-			
 			SCENE_MGR.ChangeScene(SceneIds::Dev1);
 		}
 			auto choicepos = player1->GetPosition();
@@ -74,8 +73,7 @@ void CharacterChoice1::Update(float dt)
 	if (choice->GetSide() == Sides::Right)
 	{
 		if (InputMgr::GetKeyDown(sf::Keyboard::Left))
-		{
-			player1->Player::ChangeTexturIdPlayer("player2");
+		{	
 			choice->SetSide(Sides::Left);
 		}
 		if (InputMgr::GetKeyDown(sf::Keyboard::Enter))

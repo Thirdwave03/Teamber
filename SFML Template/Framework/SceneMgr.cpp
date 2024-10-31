@@ -4,7 +4,6 @@
 #include "SceneDev2.h"
 #include "SceneTitle.h"
 #include "CharacterChoice1.h"
-#include "CharacterChoice2.h"
 #include "SceneStage2.h"
 #include "SceneStage3.h"
 #include "SceneStage4.h"

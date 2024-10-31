@@ -293,6 +293,12 @@ void SceneStage3::OnChop(Sides side)
 
 void SceneStage3::OnQ()
 {
-	skillMgr->Hadouken(player->GetSide());
-	sfxHadouken.play();
+	if (skillMgr->Hadouken(player->GetSide()))
+		sfxHadouken.play();
+}
+
+void SceneStage3::OnW()
+{
+	if (skillMgr->Shoryuken(player->GetSide()))
+		sfxShoryuken.play();
 }

@@ -79,4 +79,7 @@ public:
 
 	void OnChop(Sides side);
 
+	void OnQ();
+	void OnW();
+	void OnE();
 };

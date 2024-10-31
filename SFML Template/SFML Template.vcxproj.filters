@@ -29,6 +29,8 @@
     <ClCompile Include="UiTimebar.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
     <ClCompile Include="EffectSkill1.cpp" />
+    <ClCompile Include="Choice.cpp" />
+    <ClCompile Include="EffectSkill2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Branch.h" />
@@ -62,5 +64,7 @@
     <ClInclude Include="UiTimebar.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="EffectSkill1.h" />
+    <ClInclude Include="Choice.h" />
+    <ClInclude Include="EffectSkill2.h" />
   </ItemGroup>
 </Project>

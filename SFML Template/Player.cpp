@@ -160,11 +160,6 @@ void Player::Update(float dt)
 		}
 		if (InputMgr::GetKeyDown(sf::Keyboard::Q))
 		{
-			if (sceneGame2 != nullptr)
-			{
-				sceneGame2->OnChop(1, Sides::Left);
-				sfxChop.play();
-			}
 			if (sceneStage2 != nullptr)
 			{
 				sceneStage2->OnQ();
@@ -172,12 +167,30 @@ void Player::Update(float dt)
 			}
 			if (sceneStage3 != nullptr)
 			{
-				sceneStage3->OnChop(Sides::Left);
+				sceneStage3->OnQ();
 				sfxChop.play();
 			}
 			if (sceneStage4 != nullptr)
 			{
-				sceneStage4->OnChop(Sides::Left);
+				sceneStage4->OnQ();
+				sfxChop.play();
+			}
+		}
+		if (InputMgr::GetKeyDown(sf::Keyboard::W))
+		{
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(1, Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneStage3 != nullptr)
+			{
+				sceneStage3->OnW();
+				sfxChop.play();
+			}
+			if (sceneStage4 != nullptr)
+			{
+				sceneStage4->OnW();
 				sfxChop.play();
 			}
 		}

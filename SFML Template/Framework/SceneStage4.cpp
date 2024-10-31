@@ -133,6 +133,11 @@ void SceneStage4::Update(float dt)
 
 	SetTimeLimMsg(std::to_string((int)timeLim));
 
+	if (InputMgr::GetKeyDown(sf::Keyboard::R))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Title);
+	}
+
 	switch (currentStatus)
 	{
 	case SceneStage4::Status::Awake:

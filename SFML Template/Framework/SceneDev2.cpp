@@ -158,6 +158,15 @@ void SceneDev2::Update(float dt)
 		UpdatePause(dt);
 		break;
 	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Dev1);
+	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num3))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Dev3);
+	}
 }
 
 void SceneDev2::Draw(sf::RenderWindow& window)

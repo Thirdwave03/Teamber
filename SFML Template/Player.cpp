@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "SceneDev1.h"	
-#include "SceneDev2.h"	
+#include "SceneDev2.h"
+#include "SceneStage2.h"
+#include "SceneStage3.h"
+#include "SceneStage4.h"
 
 Player::Player(const std::string& name) : GameObject(name)
 {
@@ -131,6 +134,44 @@ void Player::Update(float dt)
 				sceneGame2->OnChop(1, Sides::Left);
 				sfxChop.play();
 			}
+			if (sceneStage2 != nullptr)
+			{
+				sceneStage2->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneStage3 != nullptr)
+			{
+				sceneStage3->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneStage4 != nullptr)
+			{
+				sceneStage4->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+		}
+		if (InputMgr::GetKeyDown(sf::Keyboard::Q))
+		{
+			if (sceneGame2 != nullptr)
+			{
+				sceneGame2->OnChop(1, Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneStage2 != nullptr)
+			{
+				sceneStage2->OnQ();
+				sfxChop.play();
+			}
+			if (sceneStage3 != nullptr)
+			{
+				sceneStage3->OnChop(Sides::Left);
+				sfxChop.play();
+			}
+			if (sceneStage4 != nullptr)
+			{
+				sceneStage4->OnChop(Sides::Left);
+				sfxChop.play();
+			}
 		}
 
 		if (InputMgr::GetKeyUp(sf::Keyboard::A))
@@ -152,7 +193,21 @@ void Player::Update(float dt)
 				sceneGame2->OnChop(1, Sides::Right);
 				sfxChop.play();
 			}
-
+			if (sceneStage2 != nullptr)
+			{
+				sceneStage2->OnChop(Sides::Right);
+				sfxChop.play();
+			}
+			if (sceneStage3 != nullptr)
+			{
+				sceneStage3->OnChop(Sides::Right);
+				sfxChop.play();
+			}
+			if (sceneStage4 != nullptr)
+			{
+				sceneStage4->OnChop(Sides::Right);
+				sfxChop.play();
+			}
 		}
 
 		if (InputMgr::GetKeyUp(sf::Keyboard::D))

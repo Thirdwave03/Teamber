@@ -37,15 +37,15 @@ protected:
 	TextGo* timeLimMsg;
 	float timeLim = 30.f;
 
-	int stage = 1;
+	int stage = 2;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
-	sf::Sound sfxShoryuken;
+	sf::Sound sfxHadouken;
 
 	std::string sbIdDeath = "sound/death.wav";
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
-	std::string sbIdShoryuken = "sound/Shoryuken.wav";
+	std::string sbIdHadouken = "sound/Hadouken.wav";
 
 public:
 	SceneStage2();
@@ -75,5 +75,6 @@ public:
 
 	void OnChop(Sides side);
 
+	void OnQ();
 };
 

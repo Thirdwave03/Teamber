@@ -7,6 +7,7 @@
 #include "TextGo.h"
 #include "UiScore.h"
 #include "UiTimebar.h"
+#include "SkillCD.h"
 
 SceneStage2::SceneStage2() : Scene(SceneIds::Stage2)
 {
@@ -40,6 +41,9 @@ void SceneStage2::Init()
 	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
 	uiTimer = AddGo(new UiTimebar("Ui Timer"));
 
+	skillMgr = AddGo(new SkillCD("default", "skillMgr"));
+	skillMgr->SkillUnlock(0);
+
 	Scene::Init();
 
 	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
@@ -68,16 +72,16 @@ void SceneStage2::Enter()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
-	TEXTURE_MGR.Load("graphics/Shoryuken.png");
-	TEXTURE_MGR.Load("graphics/Shoryuken_icon.png");
+	TEXTURE_MGR.Load("graphics/Hadouken.png");
+	TEXTURE_MGR.Load("graphics/Hadouken_icon.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
-	SOUNDBUFFER_MGR.Load(sbIdShoryuken);
+	SOUNDBUFFER_MGR.Load(sbIdHadouken);
 
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
-	sfxShoryuken.setBuffer(SOUNDBUFFER_MGR.Get(sbIdShoryuken));
+	sfxHadouken.setBuffer(SOUNDBUFFER_MGR.Get(sbIdHadouken));
 
 	player->SetSceneGameStage2(this);
 
@@ -103,13 +107,13 @@ void SceneStage2::Exit()
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
-	TEXTURE_MGR.Unload("graphics/Shoryuken.png");
-	TEXTURE_MGR.Unload("graphics/Shoryuken_icon.png");
+	TEXTURE_MGR.Unload("graphics/Hadouken.png");
+	TEXTURE_MGR.Unload("graphics/Hadouken_icon.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
 	SOUNDBUFFER_MGR.Unload("sound/out_of_time.wav");
-	SOUNDBUFFER_MGR.Unload("sound/Shoryuken.wav");
+	SOUNDBUFFER_MGR.Unload("sound/Hadouken.wav");
 }
 
 void SceneStage2::Update(float dt)
@@ -278,4 +282,10 @@ void SceneStage2::OnChop(Sides side)
 		SetScore(score + 100);
 		timer += 1.f;
 	}
+}
+
+void SceneStage2::OnQ()
+{
+	skillMgr->Hadouken(player->GetSide());
+	sfxHadouken.play();
 }

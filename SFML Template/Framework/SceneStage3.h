@@ -24,6 +24,7 @@ protected:
 
 	Tree* tree;
 	Player* player;
+	SkillCD* skillMgr;
 
 	TextGo* centerMsg;
 	UiScore* uiScore;
@@ -36,7 +37,7 @@ protected:
 	TextGo* timeLimMsg;
 	float timeLim = 30.f;
 
-	int stage = 1;
+	int stage = 3;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
@@ -76,4 +77,5 @@ public:
 
 	void OnChop(Sides side);
 
+	void OnQ();
 };

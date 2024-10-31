@@ -24,6 +24,7 @@ protected:
 
 	Tree* tree;
 	Player* player;
+	SkillCD* skillMgr;
 
 	TextGo* centerMsg;
 	UiScore* uiScore;

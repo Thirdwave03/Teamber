@@ -3,12 +3,17 @@
 #include "SceneDev1.h"
 #include "SceneDev2.h"
 #include "SceneTitle.h"
+#include "CharacterChoice1.h"
+#include "CharacterChoice2.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneDev1());	
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneTitle());
+	scenes.push_back(new CharacterChoice1());
+	//scenes.push_back(new CharacterChoice2());
+
 
 	for (auto scene : scenes)
 	{

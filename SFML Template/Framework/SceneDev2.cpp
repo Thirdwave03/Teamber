@@ -286,7 +286,7 @@ void SceneDev2::UpdateGame(float dt)
 		player2->OnDie();
 		player1->OnDie();
 
-		SetCenterMessage("Yours Chicken!!");
+		SetCenterMessage("Yours Chicken!! Press Enter!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -296,7 +296,7 @@ void SceneDev2::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player1->OnDie();
-		SetCenterMessage("Player1 Time Over!");
+		SetCenterMessage("Player1 Time Over! Press Enter!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -306,7 +306,7 @@ void SceneDev2::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player2->OnDie();
-		SetCenterMessage("Player2 Time Over!");
+		SetCenterMessage("Player2 Time Over! Press Enter!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -317,6 +317,7 @@ void SceneDev2::UpdateGameOver(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+		SCENE_MGR.ChangeScene(SceneIds::Title);
 	}
 }
 
@@ -338,7 +339,7 @@ void SceneDev2::OnChop(int playernumber, Sides side)
 			sfxDeath.play();
 
 			player1->OnDie();
-			SetCenterMessage("Player1 You Die!");
+			SetCenterMessage("Player1 You Die! Press Enter!");
 			SetStatus(Status::GameOver);
 		}
 		else
@@ -356,7 +357,7 @@ void SceneDev2::OnChop(int playernumber, Sides side)
 			sfxDeath.play();
 
 			player2->OnDie();
-			SetCenterMessage("Player2 You Die!");
+			SetCenterMessage("Player2 You Die! Press Enter!");
 			SetStatus(Status::GameOver);
 		}
 		else

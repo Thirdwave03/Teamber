@@ -289,7 +289,7 @@ void SceneDev1::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player->OnDie();
-		SetCenterMessage("Time Over!");
+		SetCenterMessage("Time Over! Press Enter!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -300,6 +300,7 @@ void SceneDev1::UpdateGameOver(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+		SCENE_MGR.ChangeScene(SceneIds::Title);
 	}
 }
 
@@ -319,7 +320,7 @@ void SceneDev1::OnChop(Sides side)
 		sfxDeath.play();
 
 		player->OnDie();
-		SetCenterMessage("You Die!");
+		SetCenterMessage("You Die! Press Enter!");
 		SetStatus(Status::GameOver);
 	}
 	else

@@ -107,6 +107,12 @@ void Player::Reset()
 	SetSide(Sides::Right);
 }
 
+void Player::SetTexture(const std::string& changeId)
+{
+	texIdPlayer = changeId;
+	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
+}
+
 
 void Player::Release()
 {

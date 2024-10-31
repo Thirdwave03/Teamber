@@ -57,6 +57,9 @@ public:
 	void Release() override;
 	void Reset()  override;
 
+	void SetTexture(const std::string& changeId);
+	
+
 	void ChangeTexturIdPlayer(const std::string& changeid)
 	{
 		spritePlayer.setTexture(TEXTURE_MGR.Get(changeid));

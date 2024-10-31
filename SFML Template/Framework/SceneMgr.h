@@ -7,6 +7,7 @@ class SceneMgr : public Singleton<SceneMgr>
 	friend class Singleton<SceneMgr>;
 
 protected:
+	Sides selected;
 	std::vector<Scene*> scenes;
 
 	SceneIds startScene = SceneIds::Dev1;
@@ -26,6 +27,13 @@ protected:
 public:
 	void Init();
 	void Release();
+
+	void setSide(Sides selected)
+	{
+		this->selected = selected;
+	}
+	
+	Sides GetSide() { return selected; }
 
 	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
 	SceneIds GetCurrentSceneId() const { return currentScene; }

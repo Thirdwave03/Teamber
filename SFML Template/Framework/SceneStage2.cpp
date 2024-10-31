@@ -17,6 +17,29 @@ void SceneStage2::Init()
 {
 	std::cout << "SceneStage2::Init()" << std::endl;
 
+	GameObject* obj = AddGo(new SpriteGo("graphics/background2.png"));
+	obj->sortingLayer = SortingLayers::Background;
+	obj->sortingOrder = -1;
+	obj->SetOrigin(Origins::MC);
+	obj->SetPosition({ 1920 / 2, 1080 / 2 });
+
+	tree = AddGo(new Tree("Tree"));
+	player = AddGo(new Player("graphics/player.png", "Player"));
+
+	timeLimMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Time Limit"));
+	timeLimMsg->sortingLayer = SortingLayers::UI;
+	timeLimMsg->text.setCharacterSize(120);
+	timeLimMsg->text.setFillColor(sf::Color::White);
+	timeLimMsg->SetPosition({ 1920.f / 2.f, 0 });
+	timeLimMsg->SetOrigin({ 50.f,0.f });
+	SetTimeLimMsg(std::to_string((int)timeLim));
+
+	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
+	centerMsg->sortingLayer = SortingLayers::UI;
+
+	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
+	uiTimer = AddGo(new UiTimebar("Ui Timer"));
+
 	Scene::Init();
 
 	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
@@ -37,7 +60,7 @@ void SceneStage2::Init()
 
 void SceneStage2::Enter()
 {
-	TEXTURE_MGR.Load("graphics/background.png");
+	TEXTURE_MGR.Load("graphics/background2.png");
 	TEXTURE_MGR.Load("graphics/cloud.png");
 	TEXTURE_MGR.Load("graphics/tree.png");
 	TEXTURE_MGR.Load("graphics/branch.png");
@@ -67,7 +90,7 @@ void SceneStage2::Exit()
 {
 	std::cout << "SceneStage2::Exit()" << std::endl;
 
-	player->SetSceneGame(nullptr);
+	player->SetSceneGameStage2(nullptr);
 	tree->ClearEffectLog();
 
 	Scene::Exit();
@@ -168,6 +191,7 @@ void SceneStage2::SetStatus(Status newStatus)
 			timer = gameTime;
 			timeLim = 30.f;
 			stage = 1;
+			tree->SetTreeHp(80);
 
 			SetScore(score);
 			uiTimer->SetValue(1.f);

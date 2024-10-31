@@ -6,6 +6,7 @@ class Player;
 class TextGo;
 class UiScore;
 class UiTimebar;
+class SkillCD;
 
 class SceneStage2 : public Scene
 {
@@ -23,6 +24,7 @@ protected:
 
 	Tree* tree;
 	Player* player;
+	SkillCD* skillMgr;
 
 	TextGo* centerMsg;
 	UiScore* uiScore;

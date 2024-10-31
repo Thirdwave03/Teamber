@@ -68,9 +68,9 @@ int Tree::GetTreeHp()
 	return treeHp;
 }
 
-void Tree::SetTreeHp()
+void Tree::SetTreeHp(int hp_in)
 {
-	treeHp = 80;
+	treeHp = hp_in;
 }
 
 

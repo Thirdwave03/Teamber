@@ -158,6 +158,15 @@ void SceneDev2::Update(float dt)
 		UpdatePause(dt);
 		break;
 	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Dev1);
+	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num3))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Dev3);
+	}
 }
 
 void SceneDev2::Draw(sf::RenderWindow& window)
@@ -265,6 +274,23 @@ void SceneDev2::UpdateGame(float dt)
 
 	timer1 = Utils::Clamp(timer1 - dt, 0.f, gameTime);
 	uiTimer1->SetValue(timer1 / gameTime);
+
+	timer2 = Utils::Clamp(timer2 - dt, 0.f, gameTime);
+	uiTimer2->SetValue(timer2 / gameTime);
+
+	if (timer1 <= 0 && timer2 <= 0)
+	{
+		sfxTimeOut.play();
+		sfxTimeOut.play();
+
+		player2->OnDie();
+		player1->OnDie();
+
+		SetCenterMessage("Yours Chicken!!");
+		SetStatus(Status::GameOver);
+		return;
+	}
+
 	if (timer1 <= 0.f)
 	{
 		sfxTimeOut.play();
@@ -275,8 +301,6 @@ void SceneDev2::UpdateGame(float dt)
 		return;
 	}
 
-	timer2 = Utils::Clamp(timer2 - dt, 0.f, gameTime);
-	uiTimer2->SetValue(timer2 / gameTime);
 	if (timer2 <= 0.f)
 	{
 		sfxTimeOut.play();

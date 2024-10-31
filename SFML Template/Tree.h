@@ -34,7 +34,7 @@ public:
 	void Release() override;
 	
 	int GetTreeHp();
-	void SetTreeHp();
+	void SetTreeHp(int hp_in);
 
 	void Reset() override;
 

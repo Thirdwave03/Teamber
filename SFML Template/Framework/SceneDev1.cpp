@@ -84,6 +84,7 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/log.png");
 	TEXTURE_MGR.Load("graphics/player.png");
+	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
@@ -118,6 +119,7 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/log.png");
 	TEXTURE_MGR.Unload("graphics/player.png");
+	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
@@ -287,7 +289,7 @@ void SceneDev1::UpdateGame(float dt)
 		sfxTimeOut.play();
 
 		player->OnDie();
-		SetCenterMessage("Time Over!");
+		SetCenterMessage("Time Over! Press Enter!");
 		SetStatus(Status::GameOver);
 		return;
 	}
@@ -298,6 +300,7 @@ void SceneDev1::UpdateGameOver(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+		SCENE_MGR.ChangeScene(SceneIds::Title);
 	}
 }
 
@@ -317,7 +320,7 @@ void SceneDev1::OnChop(Sides side)
 		sfxDeath.play();
 
 		player->OnDie();
-		SetCenterMessage("You Die!");
+		SetCenterMessage("You Die! Press Enter!");
 		SetStatus(Status::GameOver);
 	}
 	else

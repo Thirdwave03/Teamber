@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "SpriteGo.h"
 #include "Choice.h"
+#include "TextGo.h"
 
 CharacterChoice1::CharacterChoice1()
 	:Scene(SceneIds::Choice1)
@@ -20,6 +21,8 @@ void CharacterChoice1::Init()
 	player1 = AddGo(new Player("graphics/player.png", "player"));
 	player2 = AddGo(new Player("graphics/player2.png", "player2"));
 	choice = AddGo(new Choice("graphics/choice.png", "choice"));
+	Select = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Ui Score"));
+
 
 	Scene::Init();
 
@@ -31,13 +34,22 @@ void CharacterChoice1::Init()
 	choice->SetPosition(choicepos);
 	auto choiceSide = player1->GetSide();
 	choice->SetSide(choiceSide);
+
+	Select->text.setString("Choose the character you want");
+	Select->SetOrigin(Origins::MC);
+	Select->text.setCharacterSize(75);
+	Select->text.setFillColor(sf::Color::Blue);
+	Select->SetPosition({ 1920.f / 2.f, 100.f });
+
 }
 
 void CharacterChoice1::Enter()
 {
 	TEXTURE_MGR.Load("graphics/background.png");
 	TEXTURE_MGR.Load("graphics/player.png");
+	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/choice.png");
+	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
 	Scene::Enter();
 }
@@ -48,7 +60,9 @@ void CharacterChoice1::Exit()
 
 	TEXTURE_MGR.Unload("graphics/background.png");
 	TEXTURE_MGR.Unload("graphics/player.png");
+	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/choice.png");
+	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 }
 
 void CharacterChoice1::Update(float dt)
@@ -89,8 +103,4 @@ void CharacterChoice1::Update(float dt)
 void CharacterChoice1::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
-}
-
-void CharacterChoice1::SetMainMessage(const std::string& msg)
-{
 }

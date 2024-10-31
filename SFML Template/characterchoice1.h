@@ -6,6 +6,7 @@ class SceneDev2;
 class SceneTitle;
 class Player;
 class Choice;
+class TextGo;
 
 class CharacterChoice1 : public Scene
 {
@@ -13,6 +14,7 @@ protected:
 	Player* player1;
 	Player* player2;
 	Choice* choice; 
+	TextGo* Select;
 public:
 	CharacterChoice1();
 	~CharacterChoice1() = default;

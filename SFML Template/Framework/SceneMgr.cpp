@@ -4,7 +4,6 @@
 #include "SceneDev2.h"
 #include "SceneTitle.h"
 #include "CharacterChoice1.h"
-#include "CharacterChoice2.h"
 #include "SceneStage2.h"
 #include "SceneStage3.h"
 #include "SceneStage4.h"
@@ -15,7 +14,6 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneTitle());
 	scenes.push_back(new CharacterChoice1());
-	/*scenes.push_back(new CharacterChoice2());*/
 	scenes.push_back(new SceneStage2());
 	scenes.push_back(new SceneStage3());
 	scenes.push_back(new SceneStage4());

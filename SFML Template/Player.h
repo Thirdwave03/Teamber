@@ -57,6 +57,11 @@ public:
 	void Release() override;
 	void Reset()  override;
 
+	void ChangeTexturIdPlayer(const std::string& changeid)
+	{
+		spritePlayer.setTexture(TEXTURE_MGR.Get(changeid));
+	}
+
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window)  override;
 

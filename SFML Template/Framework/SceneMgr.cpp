@@ -3,12 +3,18 @@
 #include "SceneDev1.h"
 #include "SceneDev2.h"
 #include "SceneTitle.h"
+#include "SceneStage2.h"
+#include "SceneStage3.h"
+#include "SceneStage4.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new SceneDev1());	
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneTitle());
+	scenes.push_back(new SceneStage2());
+	scenes.push_back(new SceneStage3());
+	scenes.push_back(new SceneStage4());
 
 	for (auto scene : scenes)
 	{

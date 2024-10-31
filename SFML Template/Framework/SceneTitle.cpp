@@ -11,6 +11,7 @@
 SceneTitle::SceneTitle()
 	:Scene(SceneIds::Dev3)
 {
+
 }
 
 void SceneTitle::Init()

@@ -3,8 +3,17 @@
 class SkillCD : public GameObject
 {
 protected:
-	sf::Sprite spriteIcon;
-	sf::RectangleShape shader;
+	sf::Sprite skillIcon1;
+	sf::Sprite skillIcon2;
+	sf::Sprite skillIcon3;
+	
+	sf::RectangleShape skillShader1;
+	sf::RectangleShape skillShader2;
+	sf::RectangleShape skillShader3;
+
+	sf::Sprite spriteSkill1;
+	sf::Sprite spriteSkill2;
+	sf::Sprite spriteSkill3;
 
 	Sides side = Sides::Right;
 

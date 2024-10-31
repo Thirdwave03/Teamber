@@ -168,6 +168,7 @@ void SceneStage2::SetStatus(Status newStatus)
 			timer = gameTime;
 			timeLim = 30.f;
 			stage = 1;
+			tree->SetTreeHp(80);
 
 			SetScore(score);
 			uiTimer->SetValue(1.f);

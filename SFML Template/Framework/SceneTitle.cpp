@@ -31,7 +31,7 @@ void SceneTitle::Init()
 	}
 
 	tree = AddGo(new Tree("Tree"));
-	player = AddGo(new Player("Player"));
+	player = AddGo(new Player("graphics/player.png", "Player"));
 	MainMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Rigth Message"));
 	LeftMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Left Message"));
 	RigthMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Rigth Message"));

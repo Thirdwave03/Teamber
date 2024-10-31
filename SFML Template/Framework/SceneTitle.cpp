@@ -68,6 +68,8 @@ void SceneTitle::Enter()
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/branch.png");
 
 	Scene::Enter();
 }
@@ -82,6 +84,8 @@ void SceneTitle::Exit()
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/branch.png");
 }
 
 void SceneTitle::Update(float dt)

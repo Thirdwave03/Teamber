@@ -234,3 +234,18 @@ void Player::SetSceneGame2(SceneDev2* scene)
 {
 	sceneGame2 = scene;
 }
+
+void Player::SetSceneGameStage2(SceneStage2* scene)
+{
+	sceneStage2 = scene;
+}
+
+void Player::SetSceneGameStage3(SceneStage3* scene)
+{
+	sceneStage3 = scene;
+}
+
+void Player::SetSceneGameStage4(SceneStage4* scene)
+{
+	sceneStage4 = scene;
+}

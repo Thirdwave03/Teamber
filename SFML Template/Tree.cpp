@@ -68,6 +68,11 @@ int Tree::GetTreeHp()
 	return treeHp;
 }
 
+void Tree::SetTreeHp()
+{
+	treeHp = 80;
+}
+
 
 void Tree::Reset()
 {

@@ -164,6 +164,10 @@
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
     <ClCompile Include="Framework\SceneDev3.cpp" />
+    <ClCompile Include="Framework\SceneStage2.cpp" />
+    <ClCompile Include="Framework\SceneStage3.cpp" />
+    <ClCompile Include="Framework\SceneStage4.cpp" />
+    <ClCompile Include="Framework\SkillCD.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
@@ -189,6 +193,10 @@
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Framework\SceneDev3.h" />
+    <ClInclude Include="Framework\SceneStage2.h" />
+    <ClInclude Include="Framework\SceneStage3.h" />
+    <ClInclude Include="Framework\SceneStage4.h" />
+    <ClInclude Include="Framework\SkillCD.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />

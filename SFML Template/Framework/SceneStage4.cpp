@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SceneDev1.h"
+#include "SceneStage4.h"
 #include "SpriteGo.h"
 #include "CloudGo.h"
 #include "Tree.h"
@@ -8,52 +8,15 @@
 #include "UiScore.h"
 #include "UiTimebar.h"
 
-SceneDev1::SceneDev1() : Scene(SceneIds::Dev1)
+
+SceneStage4::SceneStage4() : Scene(SceneIds::Stage2)
 {
+
 }
 
-void SceneDev1::Init()
+void SceneStage4::Init()
 {
-	std::cout << "SceneDev1::Init()" << std::endl;
-
-
-	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
-	obj->sortingLayer = SortingLayers::Background;
-	obj->sortingOrder = -1;
-	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ 1920 / 2, 1080 / 2 });
-
-	for (int i = 0; i < 3; ++i)
-	{
-		CloudGo* cloud = AddGo(new CloudGo("graphics/cloud.png"));
-		cloud->sortingLayer = SortingLayers::Background;
-		cloud->sortingOrder = 0;
-	}
-
-	TEXTURE_MGR.Load("graphics/tree.png");
-	TEXTURE_MGR.Load("graphics/branch.png");
-	TEXTURE_MGR.Load("graphics/player.png");
-	TEXTURE_MGR.Load("graphics/rip.png");
-	TEXTURE_MGR.Load("graphics/axe.png");
-
-	tree = AddGo(new Tree("Tree"));
-	player = AddGo(new Player("graphics/player.png", "Player"));
-
-	timeLimMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Time Limit"));
-	timeLimMsg->sortingLayer = SortingLayers::UI;
-	timeLimMsg->text.setCharacterSize(120);
-	timeLimMsg->text.setFillColor(sf::Color::White);
-	timeLimMsg->SetPosition({ 1920.f / 2.f, 0 });
-	timeLimMsg->SetOrigin({ 50.f,0.f });
-	SetTimeLimMsg(std::to_string((int)timeLim));
-
-
-	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
-	centerMsg->sortingLayer = SortingLayers::UI;
-
-
-	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
-	uiTimer = AddGo(new UiTimebar("Ui Timer"));
+	std::cout << "SceneStage4::Init()" << std::endl;
 
 	Scene::Init();
 
@@ -71,10 +34,9 @@ void SceneDev1::Init()
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
 	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
-
 }
 
-void SceneDev1::Enter()
+void SceneStage4::Enter()
 {
 	TEXTURE_MGR.Load("graphics/background.png");
 	TEXTURE_MGR.Load("graphics/cloud.png");
@@ -84,29 +46,34 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/Shoryuken.png");
+	TEXTURE_MGR.Load("graphics/Shoryuken_icon.png");
+	TEXTURE_MGR.Load("graphics/Hadouken.png");
+	TEXTURE_MGR.Load("graphics/Hadouken_icon.png");
+	TEXTURE_MGR.Load("graphics/Tatsumaki.png");
+	TEXTURE_MGR.Load("graphics/Tatsumaki_icon.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
-	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
+	SOUNDBUFFER_MGR.Load(sbIdShoryuken);
 
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
+	sfxShoryuken.setBuffer(SOUNDBUFFER_MGR.Get(sbIdShoryuken));
 
-	player->SetSceneGame(this);
+	player->SetSceneGameStage4(this);
 
 	Scene::Enter();
 
 	SetStatus(Status::Awake);
 }
 
-void SceneDev1::Exit()
+void SceneStage4::Exit()
 {
-	std::cout << "SceneDev1::Exit()" << std::endl;
+	std::cout << "SceneStage4::Exit()" << std::endl;
 
 	player->SetSceneGame(nullptr);
 	tree->ClearEffectLog();
-
-
 
 	Scene::Exit();
 
@@ -118,86 +85,83 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/Shoryuken.png");
+	TEXTURE_MGR.Unload("graphics/Shoryuken_icon.png");
+	TEXTURE_MGR.Unload("graphics/Hadouken.png");
+	TEXTURE_MGR.Unload("graphics/Hadouken_icon.png");
+	TEXTURE_MGR.Unload("graphics/Tatsumaki.png");
+	TEXTURE_MGR.Unload("graphics/Tatsumaki_icon.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
 	SOUNDBUFFER_MGR.Unload("sound/out_of_time.wav");
-
+	SOUNDBUFFER_MGR.Unload("sound/Shoryuken.wav");
 }
 
-void SceneDev1::Update(float dt)
+void SceneStage4::Update(float dt)
 {
 	Scene::Update(dt);
 
 	SetTimeLimMsg(std::to_string((int)timeLim));
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num3))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev3);
-	}
-
 	switch (currentStatus)
 	{
-	case SceneDev1::Status::Awake:
+	case SceneStage4::Status::Awake:
 		UpdateAwake(dt);
 		break;
-	case SceneDev1::Status::Game:
+	case SceneStage4::Status::Game:
 		UpdateGame(dt);
 		break;
-	case SceneDev1::Status::GameOver:
+	case SceneStage4::Status::GameOver:
 		UpdateGameOver(dt);
 		break;
-	case SceneDev1::Status::Pause:
+	case SceneStage4::Status::Pause:
 		UpdatePause(dt);
 		break;
 	}
 }
 
-void SceneDev1::Draw(sf::RenderWindow& window)
+void SceneStage4::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
 }
 
-void SceneDev1::SetCenterMessage(const std::string& msg)
+void SceneStage4::SetCenterMessage(const std::string& msg)
 {
 	centerMsg->text.setString(msg);
 	centerMsg->SetOrigin(Origins::MC);
 }
 
-void SceneDev1::SetVisibleCenterMessage(bool visible)
+void SceneStage4::SetVisibleCenterMessage(bool visible)
 {
 	centerMsg->SetActive(visible);
 }
 
-void SceneDev1::SetTimeLimMsg(const std::string& msg)
+void SceneStage4::SetTimeLimMsg(const std::string& msg)
 {
 	timeLimMsg->text.setString(msg);
 	timeLimMsg->SetOrigin(Origins::MC);
 }
 
-void SceneDev1::SetScore(int score)
+void SceneStage4::SetScore(int score)
 {
 	this->score = score;
 	uiScore->SetScore(this->score);
 }
 
-int SceneDev1::GetScore()
+int SceneStage4::GetScore()
 {
 	return score;
 }
 
-void SceneDev1::SetStatus(Status newStatus)
+void SceneStage4::SetStatus(Status newStatus)
 {
 	Status prevStatus = currentStatus;
 	currentStatus = newStatus;
 
 	switch (currentStatus)
 	{
-	case SceneDev1::Status::Awake:
+	case SceneStage4::Status::Awake:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		SetCenterMessage("Press Enter To Start!!");
@@ -206,7 +170,7 @@ void SceneDev1::SetStatus(Status newStatus)
 		SetScore(score);
 		uiTimer->SetValue(1.f);
 		break;
-	case SceneDev1::Status::Game:
+	case SceneStage4::Status::Game:
 		if (prevStatus == Status::GameOver)
 		{
 			score = 0;
@@ -220,19 +184,14 @@ void SceneDev1::SetStatus(Status newStatus)
 			player->Reset();
 			tree->Reset();
 		}
-		if (tree->GetTreeHp() <= 0)
-		{
-			SCENE_MGR.ChangeScene(SceneIds::Stage2);
-			tree->SetTreeHp();
-		}
 		FRAMEWORK.SetTimeScale(1.f);
 		SetVisibleCenterMessage(false);
 		break;
-	case SceneDev1::Status::GameOver:
+	case SceneStage4::Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		break;
-	case SceneDev1::Status::Pause:
+	case SceneStage4::Status::Pause:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		SetCenterMessage("PAUSE! ESC TO RESUME!");
@@ -240,7 +199,7 @@ void SceneDev1::SetStatus(Status newStatus)
 	}
 }
 
-void SceneDev1::UpdateAwake(float dt)
+void SceneStage4::UpdateAwake(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
@@ -248,7 +207,7 @@ void SceneDev1::UpdateAwake(float dt)
 	}
 }
 
-void SceneDev1::UpdateGame(float dt)
+void SceneStage4::UpdateGame(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
@@ -272,7 +231,7 @@ void SceneDev1::UpdateGame(float dt)
 	}
 }
 
-void SceneDev1::UpdateGameOver(float dt)
+void SceneStage4::UpdateGameOver(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
@@ -280,7 +239,7 @@ void SceneDev1::UpdateGameOver(float dt)
 	}
 }
 
-void SceneDev1::UpdatePause(float dt)
+void SceneStage4::UpdatePause(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
@@ -288,7 +247,7 @@ void SceneDev1::UpdatePause(float dt)
 	}
 }
 
-void SceneDev1::OnChop(Sides side)
+void SceneStage4::OnChop(Sides side)
 {
 	Sides branchSide = tree->Chop(side);
 	if (player->GetSide() == branchSide)

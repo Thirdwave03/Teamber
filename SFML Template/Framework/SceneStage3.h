@@ -7,7 +7,7 @@ class TextGo;
 class UiScore;
 class UiTimebar;
 
-class SceneDev1 : public Scene
+class SceneStage3 : public Scene
 {
 public:
 	enum class Status
@@ -39,13 +39,17 @@ protected:
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
+	sf::Sound sfxShoryuken;
+	sf::Sound sfxHadouken;
 
 	std::string sbIdDeath = "sound/death.wav";
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
+	std::string sbIdShoryuken = "sound/Shoryuken.wav";
+	std::string sbIdHadouken = "sound/Hadouken.wav";
 
 public:
-	SceneDev1();
-	~SceneDev1() = default;
+	SceneStage3();
+	~SceneStage3() = default;
 
 	void Init() override;
 	void Enter() override;
@@ -72,4 +76,3 @@ public:
 	void OnChop(Sides side);
 
 };
-

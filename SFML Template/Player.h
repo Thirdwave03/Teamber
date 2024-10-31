@@ -3,6 +3,9 @@
 
 class SceneDev1;
 class SceneDev2;
+class SceneStage2;
+class SceneStage3;
+class SceneStage4;
 
 class Player : public GameObject
 {
@@ -32,6 +35,11 @@ protected:
 
 	SceneDev1* sceneGame = nullptr;
 	SceneDev2* sceneGame2 = nullptr;
+	SceneStage2* sceneStage2 = nullptr;
+	SceneStage3* sceneStage3 = nullptr;
+	SceneStage4* sceneStage4 = nullptr;
+
+	bool skillUnlock[3] = { false };
 
 public:
 	Player(const std::string& name = "");
@@ -56,5 +64,8 @@ public:
 
 	void SetSceneGame(SceneDev1* scene);
 	void SetSceneGame2(SceneDev2* scene);
+	void SetSceneGameStage2(SceneStage2* scene);
+	void SetSceneGameStage3(SceneStage3* scene);
+	void SetSceneGameStage4(SceneStage4* scene);
 };
 

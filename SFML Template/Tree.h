@@ -14,7 +14,7 @@ protected:
 	std::string treeTexId = "graphics/tree.png";
 	std::string branchTexId = "graphics/branch.png";
 
-	int treeHp = 100;
+	int treeHp = 80;
 
 	float brachOffsetY = 150.f;
 
@@ -32,7 +32,9 @@ public:
 
 	void Init() override;
 	void Release() override;
+	
 	int GetTreeHp();
+	void SetTreeHp();
 
 	void Reset() override;
 

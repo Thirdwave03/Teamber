@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="characterchoice1.cpp" />
-    <ClCompile Include="characterchoice2.cpp" />
     <ClCompile Include="CloudGo.cpp" />
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
@@ -18,7 +17,6 @@
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\stdafx.cpp" />
     <ClCompile Include="Framework\TextGo.cpp" />
-    <ClCompile Include="Framework\SceneDev3.cpp" />
     <ClCompile Include="Framework\SceneStage2.cpp" />
     <ClCompile Include="Framework\SceneStage3.cpp" />
     <ClCompile Include="Framework\SceneStage4.cpp" />
@@ -35,7 +33,6 @@
   <ItemGroup>
     <ClInclude Include="Branch.h" />
     <ClInclude Include="characterchoice1.h" />
-    <ClInclude Include="characterchoice2.h" />
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />
@@ -53,7 +50,6 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
-    <ClInclude Include="Framework\SceneDev3.h" />
     <ClInclude Include="Framework\SceneStage2.h" />
     <ClInclude Include="Framework\SceneStage3.h" />
     <ClInclude Include="Framework\SceneStage4.h" />

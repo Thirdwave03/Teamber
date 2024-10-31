@@ -153,7 +153,6 @@
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="EffectSkill1.cpp" />
     <ClCompile Include="EffectSkill2.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
@@ -185,7 +184,6 @@
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="EffectSkill1.h" />
     <ClInclude Include="EffectSkill2.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />
     <ClInclude Include="Framework\Framework.h" />

@@ -15,7 +15,7 @@ enum class SceneIds
 	Dev2,
 	Title,
 	Choice1,
-	Choice2,
+	/*Choice2,*/
 	Stage2,
 	Stage3,
 	Stage4,

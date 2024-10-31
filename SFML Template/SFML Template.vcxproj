@@ -148,11 +148,11 @@
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="CharacterChoice1.cpp" />
-    <ClCompile Include="CharacterChoice2.cpp" />
     <ClCompile Include="Choice.cpp" />
     <ClCompile Include="CloudGo.cpp" />
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="EffectSkill1.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
@@ -181,10 +181,10 @@
   <ItemGroup>
     <ClInclude Include="Branch.h" />
     <ClInclude Include="CharacterChoice1.h" />
-    <ClInclude Include="CharacterChoice2.h" />
     <ClInclude Include="Choice.h" />
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="EffectSkill1.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />
     <ClInclude Include="Framework\Framework.h" />

@@ -86,7 +86,7 @@ void SceneTitle::Update(float dt)
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev1);
+		SCENE_MGR.ChangeScene(SceneIds::Choice1);
 	}
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{

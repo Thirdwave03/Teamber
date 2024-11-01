@@ -2,7 +2,7 @@
 #include "EffectSkill2.h"
 
 EffectSkill2::EffectSkill2()
-	: SpriteGo("graphics/Shoryuken.png")
+	: SpriteGo("graphics/Shoryuken.png", "Shoryuken")
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 1;
@@ -29,4 +29,9 @@ void EffectSkill2::Fire(sf::Vector2f v)
 {
 	velocity = v;
 	timer = 0.f;
+}
+
+sf::FloatRect EffectSkill2::GGB() const
+{
+	return sprite.getGlobalBounds();
 }

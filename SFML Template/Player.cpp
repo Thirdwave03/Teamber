@@ -163,17 +163,14 @@ void Player::Update(float dt)
 			if (sceneStage2 != nullptr)
 			{
 				sceneStage2->OnQ();
-				sfxChop.play();
 			}
 			if (sceneStage3 != nullptr)
 			{
 				sceneStage3->OnQ();
-				sfxChop.play();
 			}
 			if (sceneStage4 != nullptr)
 			{
 				sceneStage4->OnQ();
-				sfxChop.play();
 			}
 		}
 		if (InputMgr::GetKeyDown(sf::Keyboard::W))
@@ -186,15 +183,19 @@ void Player::Update(float dt)
 			if (sceneStage3 != nullptr)
 			{
 				sceneStage3->OnW();
-				sfxChop.play();
 			}
 			if (sceneStage4 != nullptr)
 			{
 				sceneStage4->OnW();
-				sfxChop.play();
 			}
 		}
-
+		if (InputMgr::GetKeyDown(sf::Keyboard::E))
+		{
+			if (sceneStage4 != nullptr)
+			{
+				sceneStage4->OnE();
+			}
+		}
 		if (InputMgr::GetKeyUp(sf::Keyboard::A))
 		{
 			isChppoing = false;

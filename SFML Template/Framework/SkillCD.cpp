@@ -5,9 +5,10 @@
 #include "SceneStage2.h"
 #include "SceneStage3.h"
 #include "SceneStage4.h"
-#include "EffectSkill1.h"
+//#include "EffectSkill1.h"
 //#include "EffectSkill2.h"
 //#include "EffectSkill3.h"
+#include "Anim.h"
 
 SkillCD::SkillCD(const std::string& name)
 	: GameObject(name)
@@ -169,7 +170,6 @@ bool SkillCD::Hadouken(Sides side)
 			tempSpeed = { -500.f,0 };
 			s1effect->SetScale({ -1.f,1.f });
 		}
-
 		SCENE_MGR.GetCurrentScene()->AddGo(s1effect);
 		s1effect->SetOrigin(Origins::MC);
 		s1effect->SetPosition(tempPos);
@@ -216,5 +216,18 @@ bool SkillCD::Shoryuken(Sides side)
 
 bool SkillCD::Tatsumaki()
 {
-	return true;
+	if (skillCD[2] <= 0)
+	{
+		/*	EffectSkill3 tempS3Effect(p_txtT, sf::Vector2u(0,10), 0.2f);*/
+		EffectSkill3* s3effect = effectSkill3Pool.Take();
+		SCENE_MGR.GetCurrentScene()->AddGo(s3effect);
+		s3effect->SetOrigin(Origins::TL);
+		s3effect->SetPosition({ 1920.f/4, 100.f});
+		s3effect->Fire();
+		s3effect->SetScale({7.5f, 7.f});
+		skillCD[2] = 5;
+		return true;
+	}
+	else
+		return false;
 }

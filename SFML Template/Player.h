@@ -12,7 +12,6 @@ class Player : public GameObject
 protected:
 	sf::Sound sfxChop;
 
-
 	sf::Sprite spritePlayer;
 	sf::Sprite spriteAxe;
 	sf::Sprite spriteRip;

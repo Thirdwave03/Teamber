@@ -100,7 +100,6 @@ GameObject* Scene::FindGo(const std::string& name)
 			return obj;
 		}
 	}
-
 	return nullptr;
 }
 

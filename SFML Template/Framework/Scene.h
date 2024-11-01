@@ -7,6 +7,12 @@ protected:
 	std::list<GameObject*> addGameObjects;
 	std::list<GameObject*> removeGameObjects;
 
+	std::list<GameObject*> enemyList;
+	std::list<GameObject*> bulletList;
+	std::list<GameObject*> deathNote;
+
+	//std::unordered_map<Gameobject*>;
+
 public:
 	const SceneIds id;
 	Scene(SceneIds id);

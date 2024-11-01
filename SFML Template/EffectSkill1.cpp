@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "EffectSkill1.h"
 
-EffectSkill1::EffectSkill1() 
-	: SpriteGo("graphics/Hadouken.png")
+EffectSkill1::EffectSkill1()
+	: SpriteGo("graphics/Hadouken.png", "Hadouken")
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 1;
@@ -30,4 +30,9 @@ void EffectSkill1::Fire(sf::Vector2f v)
 {
 	velocity = v;
 	timer = 0.f;
+}
+
+sf::FloatRect EffectSkill1::GGB() const
+{
+	return sprite.getGlobalBounds();
 }

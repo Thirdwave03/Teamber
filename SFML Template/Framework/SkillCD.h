@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "EffectSkill1.h"
 #include "EffectSkill2.h"
+#include "EffectSkill3.h"
 
 
 class SkillCD : public GameObject
@@ -33,8 +34,11 @@ protected:
 
 	ObjectPool<EffectSkill2> effectSkill2Pool;
 	std::list<EffectSkill2*> Skill2Effects;
-	
-	float skillCD[3] = { 0.5f, 3.f, 5.f };
+
+	ObjectPool<EffectSkill3> effectSkill3Pool;
+	std::list<EffectSkill3*> Skill3Effects;
+
+	float skillCD[3] = { 0.5f, 0.5f, 0.5f };
 
 	bool skillUnlock[3] = { false };
 	

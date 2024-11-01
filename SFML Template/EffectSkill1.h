@@ -1,5 +1,6 @@
 #pragma once
 #include "SpriteGo.h"
+
 class EffectSkill1 :
     public SpriteGo
 {
@@ -17,5 +18,7 @@ public:
 	void Update(float dt) override;
 
 	void Fire(sf::Vector2f v);
+
+	sf::FloatRect GGB() const override;
 };
 

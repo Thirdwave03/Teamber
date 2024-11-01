@@ -8,6 +8,8 @@
 #include "UiScore.h"
 #include "UiTimebar.h"
 #include "SkillCD.h"
+#include "EnemyLava.h"
+#include "RotatingObject.h"
 
 SceneStage4::SceneStage4() : Scene(SceneIds::Stage4)
 {
@@ -18,11 +20,19 @@ void SceneStage4::Init()
 {
 	std::cout << "SceneStage4::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo("graphics/background3.png"));
-	obj->sortingLayer = SortingLayers::Background;
-	obj->sortingOrder = -1;
-	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ 1920 / 2, 1080 / 2 });
+	rotatingobject[0] = AddGo(new RotatingObject("graphics/background4.png"));
+	rotatingobject[0]->sortingLayer = SortingLayers::Background;
+	rotatingobject[0]->sortingOrder = -1;
+	rotatingobject[0]->SetOrigin(Origins::MC);
+	rotatingobject[0]->SetPosition({ 1920 / 2, 1080 / 2 });
+	rotatingobject[0]->SetRotationMultiplier(10.f);
+
+	rotatingobject[1] = AddGo(new RotatingObject("graphics/HOS.png"));
+	rotatingobject[1]->sortingLayer = SortingLayers::UI;
+	rotatingobject[1]->sortingOrder = 0;
+	rotatingobject[1]->SetOrigin(Origins::MC);
+	rotatingobject[1]->SetPosition({ 1920 / 2, 1080 / 2 });
+	rotatingobject[1]->SetRotationMultiplier(-150.f);
 
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("graphics/player.png", "Player"));
@@ -44,6 +54,7 @@ void SceneStage4::Init()
 	skillMgr = AddGo(new SkillCD("default", "skillMgr"));
 	skillMgr->SkillUnlock(0);
 	skillMgr->SkillUnlock(1);
+	skillMgr->SkillUnlock(2);
 
 	Scene::Init();
 
@@ -65,7 +76,8 @@ void SceneStage4::Init()
 
 void SceneStage4::Enter()
 {
-	TEXTURE_MGR.Load("graphics/background3.png");
+	TEXTURE_MGR.Load("graphics/background4.png");
+	TEXTURE_MGR.Load("graphics/HOS.png");
 	TEXTURE_MGR.Load("graphics/cloud.png");
 	TEXTURE_MGR.Load("graphics/tree.png");
 	TEXTURE_MGR.Load("graphics/branch.png");
@@ -73,6 +85,9 @@ void SceneStage4::Enter()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/Lava.png");
+	TEXTURE_MGR.Load("graphics/Meteor.png");
+	TEXTURE_MGR.Load("graphics/HOSad.png");
 	TEXTURE_MGR.Load("graphics/Hadouken.png");
 	TEXTURE_MGR.Load("graphics/Hadouken_icon.png");
 	TEXTURE_MGR.Load("graphics/Shoryuken.png");
@@ -84,11 +99,13 @@ void SceneStage4::Enter()
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
 	SOUNDBUFFER_MGR.Load(sbIdHadouken);
 	SOUNDBUFFER_MGR.Load(sbIdShoryuken);
+	SOUNDBUFFER_MGR.Load(sbIdTatsumaki);
 
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
 	sfxHadouken.setBuffer(SOUNDBUFFER_MGR.Get(sbIdHadouken));
 	sfxShoryuken.setBuffer(SOUNDBUFFER_MGR.Get(sbIdShoryuken));
+	sfxTatsumaki.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTatsumaki));
 
 	player->SetSceneGameStage4(this);
 
@@ -108,12 +125,16 @@ void SceneStage4::Exit()
 
 	TEXTURE_MGR.Unload("graphics/cloud.png");
 	TEXTURE_MGR.Unload("graphics/background.png");
+	TEXTURE_MGR.Unload("graphics/HOS.png");
 	TEXTURE_MGR.Unload("graphics/tree.png");
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/log.png");
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/Lava.png");
+	TEXTURE_MGR.Unload("graphics/Meteor.png");
+	TEXTURE_MGR.Unload("graphics/HOSad.png");
 	TEXTURE_MGR.Unload("graphics/Hadouken.png");
 	TEXTURE_MGR.Unload("graphics/Hadouken_icon.png");
 	TEXTURE_MGR.Unload("graphics/Shoryuken.png");
@@ -125,13 +146,26 @@ void SceneStage4::Exit()
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
 	SOUNDBUFFER_MGR.Unload("sound/out_of_time.wav");
 	SOUNDBUFFER_MGR.Unload("sound/Hadouken.wav");
+	SOUNDBUFFER_MGR.Unload("sound/Shoryuken.wav");
+	SOUNDBUFFER_MGR.Unload("sound/Tatsumaki.wav");
+
+	for (auto obj : gameObjects)
+	{
+		if (!obj->IsActive())
+			continue;
+		if (obj->GetName() == "Enemy")
+			obj->SetActive(false);
+	}
 }
 
 void SceneStage4::Update(float dt)
-{
+{	
 	Scene::Update(dt);
 
 	SetTimeLimMsg(std::to_string((int)timeLim));
+	spawnCnt -= dt;
+	spawnCnt2 -= dt;
+	spawnCnt3 -= dt;
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::R))
 	{
@@ -207,7 +241,8 @@ void SceneStage4::SetStatus(Status newStatus)
 	case SceneStage4::Status::Game:
 		if (prevStatus == Status::GameOver)
 		{
-			score = 0;
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);
+			score = 17000;
 			timer = gameTime;
 			timeLim = 30.f;
 			stage = 1;
@@ -244,14 +279,29 @@ void SceneStage4::UpdateAwake(float dt)
 
 void SceneStage4::UpdateGame(float dt)
 {
+	timeLim += dt;
+
+	if (spawnCnt <= 0.f)
+	{
+		spawnCnt += 2;
+		SpawnLava(Utils::RandomRange(0, 2));
+	}
+	if (spawnCnt2 <= 0.f)
+	{
+		spawnCnt2 += 4;
+		SpawnMeteor(Utils::RandomRange(0, 2));
+	}
+	if (spawnCnt3 <= 0.f)
+	{
+		spawnCnt3 += 4;
+		SpawnHOS(Utils::RandomRange(0, 2));
+	}
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
 		SetStatus(Status::Pause);
 		return;
 	}
-
-	if (timeLim > 0.f)
-		timeLim -= dt;
 
 	timer = Utils::Clamp(timer - dt, 0.f, gameTime);
 	uiTimer->SetValue(timer / gameTime);
@@ -263,6 +313,51 @@ void SceneStage4::UpdateGame(float dt)
 		SetCenterMessage("Time Over!");
 		SetStatus(Status::GameOver);
 		return;
+	}
+
+	for (auto obj1 : gameObjects)
+	{
+		if (!obj1->IsActive())
+			continue;
+		if (obj1->GetName() == "Enemy")
+		{
+			if (std::find(enemyList.begin(), enemyList.end(), obj1) == enemyList.end())
+				enemyList.push_back(obj1);
+		}
+		if (obj1->GetName() == "Hadouken" || obj1->GetName() == "Shoryuken" || obj1->GetName() == "Tatsumaki")
+		{
+			if (std::find(bulletList.begin(), bulletList.end(), obj1) == bulletList.end())
+				bulletList.push_back(obj1);
+		}
+	}
+	for (auto i : enemyList)
+	{
+		if (!i->IsActive())
+			continue;
+		if (player->GetScale().x < 0.f)
+		{
+			if (i->GGB().left < 740.f && i->GGB().left + i->GGB().width > 590.f &&
+				i->GGB().top < 842.f && i->GGB().top + i->GGB().height > 650.f)
+				SetStatus(Status::GameOver);
+		}
+		if (player->GetScale().x > 0.f)
+		{
+			if (i->GGB().left < 1330.f && i->GGB().left + i->GGB().width > 1180.f &&
+				i->GGB().top < 842.f && i->GGB().top + i->GGB().height > 650.f)
+				SetStatus(Status::GameOver);
+		}
+		for (auto j : bulletList)
+		{
+			if (!j->IsActive())
+				continue;
+			if (i->GGB().left < j->GGB().left + j->GGB().width && i->GGB().left + i->GGB().width > j->GGB().left &&
+				i->GGB().top < j->GGB().top + j->GGB().height && i->GGB().top + i->GGB().height > j->GGB().top)
+			{
+				i->SetActive(false);
+				if (j->GetName() != "Tatsumaki")
+					j->SetActive(false);
+			}
+		}
 	}
 }
 
@@ -280,6 +375,72 @@ void SceneStage4::UpdatePause(float dt)
 	{
 		SetStatus(Status::Game);
 	}
+}
+
+void SceneStage4::SpawnLava(int num)
+{
+	if (num == 0)
+	{
+		GameObject* lava = AddGo(new EnemyLava("graphics/Lava.png"));
+		lava->SetPosition({ -112.f, 750.f });
+		lava->SetOrigin(Origins::MC);
+		lava->sortingLayer = SortingLayers::Foreground;
+		lava->sortingOrder = 0;
+		lava->SetScale({ -1.f, 1.f });
+		lava->SetSpeed({ 270.f,0.f });
+		lava->Reset();
+	}
+	else if (num == 1)
+	{
+		GameObject* lava2 = AddGo(new EnemyLava("graphics/Lava.png"));
+		lava2->SetPosition({ 2032.f, 750.f });
+		lava2->SetOrigin(Origins::MC);
+		lava2->sortingLayer = SortingLayers::Foreground;
+		lava2->sortingOrder = 0;
+		lava2->SetScale({ 1.f, 1.f });
+		lava2->SetSpeed({ -270.f,0.f });
+		lava2->Reset();
+	}
+
+}
+
+void SceneStage4::SpawnMeteor(int num)
+{
+	if (num == 0)
+	{
+		GameObject* meteor = AddGo(new EnemyLava("graphics/Meteor.png"));
+		meteor->SetPosition({ 660.f, -300.f });
+		meteor->SetOrigin(Origins::MC);
+		meteor->sortingLayer = SortingLayers::Foreground;
+		meteor->sortingOrder = 0;
+		meteor->SetScale({ 1.f, 1.f });
+		meteor->SetSpeed({ 0.f, 400.f });
+		meteor->Reset();
+	}
+	else if (num == 1)
+	{
+		GameObject* meteor2 = AddGo(new EnemyLava("graphics/Meteor.png"));
+		meteor2->SetPosition({ 1250.f, -300.f });
+		meteor2->SetOrigin(Origins::MC);
+		meteor2->sortingLayer = SortingLayers::Foreground;
+		meteor2->sortingOrder = 0;
+		meteor2->SetScale({ 1.f, 1.f });
+		meteor2->SetSpeed({ 0.f, 400.f });
+		meteor2->Reset();
+	}
+}
+
+void SceneStage4::SpawnHOS(int num)
+{
+	GameObject* hosAd = AddGo(new RotatingObject("graphics/HOSad.png", "Enemy"));
+	sf::Vector2f randPos = Utils::RandomOnUnitCircle();
+	hosAd->SetPosition({ 960.f + 1200.f * randPos.x, 540.f + 800* randPos.y });
+	hosAd->SetOrigin(Origins::MC);
+	hosAd->sortingLayer = SortingLayers::Foreground;
+	hosAd->sortingOrder = 0;
+	sf::Vector2f hosPos = hosAd->GetPosition();
+	hosAd->SetSpeed({ -1.f*(hosPos.x-960.f), -1.f*(hosPos.y-540.f)});
+	hosAd->Reset();
 }
 
 void SceneStage4::OnChop(Sides side)

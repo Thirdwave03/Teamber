@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Anim.cpp" />
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="CharacterChoice1.cpp" />
     <ClCompile Include="Choice.cpp" />
@@ -153,7 +154,9 @@
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="EffectSkill1.cpp" />
     <ClCompile Include="EffectSkill2.cpp" />
+    <ClCompile Include="EffectSkill3.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyLava.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="Framework\SceneStage4.cpp" />
     <ClCompile Include="Framework\SkillCD.cpp" />
     <ClCompile Include="Framework\SceneTitle.cpp" />
+    <ClCompile Include="RotatingObject.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
@@ -186,7 +190,9 @@
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="EffectSkill1.h" />
     <ClInclude Include="EffectSkill2.h" />
+    <ClInclude Include="EffectSkill3.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyLava.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />
     <ClInclude Include="Framework\Framework.h" />
@@ -209,10 +215,12 @@
     <ClInclude Include="Framework\SceneStage4.h" />
     <ClInclude Include="Framework\SkillCD.h" />
     <ClInclude Include="Framework\SceneTitle.h" />
+    <ClInclude Include="RotatingObject.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />
     <ClInclude Include="Framework\Utils.h" />
+    <ClInclude Include="Anim.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

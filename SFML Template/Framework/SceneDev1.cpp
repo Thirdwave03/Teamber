@@ -162,6 +162,10 @@ void SceneDev1::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Stage3);
 	}
+	if (InputMgr::GetKeyDown(sf::Keyboard::Numpad4))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Stage4);
+	}
 
 	switch (currentStatus)
 	{
@@ -243,11 +247,6 @@ void SceneDev1::SetStatus(Status newStatus)
 			player->Reset();
 			tree->Reset();
 		}
-		if (tree->GetTreeHp() <= 0)
-		{
-			SCENE_MGR.ChangeScene(SceneIds::Stage2);
-			tree->SetTreeHp(80);
-		}
 		FRAMEWORK.SetTimeScale(1.f);
 		SetVisibleCenterMessage(false);
 		break;
@@ -273,6 +272,14 @@ void SceneDev1::UpdateAwake(float dt)
 
 void SceneDev1::UpdateGame(float dt)
 {
+	if (score >= 8000)
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Stage2);
+		score = 0;
+		timer = gameTime;
+		timeLim = 30.f;
+	}
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::Grave))
 	{
 		SetStatus(Status::Pause);

@@ -7,6 +7,7 @@ class TextGo;
 class UiScore;
 class UiTimebar;
 class SkillCD;
+class Enemy;
 
 class SceneStage2 : public Scene
 {
@@ -29,8 +30,8 @@ protected:
 	TextGo* centerMsg;
 	UiScore* uiScore;
 	UiTimebar* uiTimer;
-
-	int score = 0;
+	
+	int score = 8000;
 	float timer = 0.f;
 	float gameTime = 5.f;
 
@@ -38,6 +39,8 @@ protected:
 	float timeLim = 30.f;
 
 	int stage = 2;
+
+	float spawnCnt = 1.f;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
@@ -72,6 +75,8 @@ public:
 	void UpdateGame(float dt);
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
+
+	void SpawnLava(int num);
 
 	void OnChop(Sides side);
 

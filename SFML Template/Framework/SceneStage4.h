@@ -7,6 +7,8 @@ class TextGo;
 class UiScore;
 class UiTimebar;
 class SkillCD;
+class RotatingObject;
+class Enemy;
 
 class SceneStage4 : public Scene
 {
@@ -29,15 +31,20 @@ protected:
 	TextGo* centerMsg;
 	UiScore* uiScore;
 	UiTimebar* uiTimer;
+	RotatingObject* rotatingobject[2];
 
-	int score = 0;
+	int score = 17000;
 	float timer = 0.f;
 	float gameTime = 5.f;
 
 	TextGo* timeLimMsg;
-	float timeLim = 30.f;
+	float timeLim = 0.1f;
 
-	int stage = 1;
+	int stage = 4;
+
+	float spawnCnt = 1.f;
+	float spawnCnt2 = 1.f;
+	float spawnCnt3 = 1.f;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
@@ -76,6 +83,10 @@ public:
 	void UpdateGame(float dt);
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
+
+	void SpawnLava(int num);
+	void SpawnMeteor(int num);
+	void SpawnHOS(int num);
 
 	void OnChop(Sides side);
 

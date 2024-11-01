@@ -13,6 +13,10 @@ protected:
 	Origins originPreset;
 	sf::Vector2f origin;
 
+	//int objectIdentification;
+
+	//static int idCnt;
+
 public:
 	SortingLayers sortingLayer = SortingLayers::Default;
 	int sortingOrder = 0;
@@ -31,7 +35,9 @@ public:
 
 	sf::Vector2f GetScale() const { return scale; }
 	virtual void SetScale(const sf::Vector2f& scale) { this->scale = scale; }
+	virtual sf::FloatRect GGB() const;
 
+	virtual void SetSpeed(sf::Vector2f);
 	sf::Vector2f GetOrigin() const { return origin; }
 	virtual void SetOrigin(Origins preset);
 	virtual void SetOrigin(const sf::Vector2f& newOrigin)
@@ -48,6 +54,8 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
 };
+
+//int GameObject::idCnt = 0;
 
 struct DrawOrderComparer
 {

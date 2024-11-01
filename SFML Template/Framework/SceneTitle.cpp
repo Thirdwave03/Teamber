@@ -45,16 +45,22 @@ void SceneTitle::Init()
 	tree->SetPosition({ 1920 / 2, 880 });
 	player->SetPosition({ 1920 / 2, 880 });
 	MainMsg->text.setCharacterSize(100);
+	MainMsg->text.setOutlineThickness(3);
+	MainMsg->text.setOutlineColor(sf::Color::Black);
 	MainMsg->text.setFillColor(sf::Color::Red);
 	MainMsg->SetPosition({ 1920.f / 2.f, 100.f });
 	SetMainMessage("Timber Game!");
 
 	LeftMsg->text.setCharacterSize(70);
+	LeftMsg->text.setOutlineThickness(3);
+	LeftMsg->text.setOutlineColor(sf::Color::Black);
 	LeftMsg->text.setFillColor(sf::Color::White);
 	LeftMsg->SetPosition({ 1920.f / 4.f, 1080.f / 2.f });
 	SetLeftMessage("If you want 1p,\n  press 'num1'");
 
 	RigthMsg->text.setCharacterSize(70);
+	RigthMsg->text.setOutlineThickness(3);
+	RigthMsg->text.setOutlineColor(sf::Color::Black);
 	RigthMsg->text.setFillColor(sf::Color::White);
 	RigthMsg->SetPosition({ (1920.f / 4.f) * 3.f, 1080.f / 2.f });
 	SetRightMessage("If you want 2p,\n  press 'num2'");
@@ -68,6 +74,8 @@ void SceneTitle::Enter()
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/branch.png");
 
 	Scene::Enter();
 }
@@ -82,6 +90,8 @@ void SceneTitle::Exit()
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/branch.png");
 }
 
 void SceneTitle::Update(float dt)
